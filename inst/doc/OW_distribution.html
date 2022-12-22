@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<meta name="author" content="Jaime Mosquera" />
+
+<meta name="date" content="2022-12-21" />
+
+<title>OW distribution</title>
+
+<script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
+// be compatible with the behavior of Pandoc < 2.8).
+document.addEventListener('DOMContentLoaded', function(e) {
+  var hs = document.querySelectorAll("div.section[class*='level'] > :first-child");
+  var i, h, a;
+  for (i = 0; i < hs.length; i++) {
+    h = hs[i];
+    if (!/^h[1-6]$/i.test(h.tagName)) continue;  // it should be a header h1-h6
+    a = h.attributes;
+    while (a.length > 0) h.removeAttribute(a[0].name);
+  }
+});
+</script>
+
+<style type="text/css">
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+</style>
+
+
+
+<style type="text/css">
+code {
+white-space: pre;
+}
+.sourceCode {
+overflow: visible;
+}
+</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+{ counter-reset: source-line 0; }
+pre.numberSource code > span
+{ position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+{ content: counter(source-line);
+position: relative; left: -1em; text-align: right; vertical-align: baseline;
+border: none; display: inline-block;
+-webkit-touch-callout: none; -webkit-user-select: none;
+-khtml-user-select: none; -moz-user-select: none;
+-ms-user-select: none; user-select: none;
+padding: 0 4px; width: 4em;
+color: #aaaaaa;
+}
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa; padding-left: 4px; }
+div.sourceCode
+{ }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } 
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.at { color: #7d9029; } 
+code span.bn { color: #40a070; } 
+code span.bu { color: #008000; } 
+code span.cf { color: #007020; font-weight: bold; } 
+code span.ch { color: #4070a0; } 
+code span.cn { color: #880000; } 
+code span.co { color: #60a0b0; font-style: italic; } 
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.do { color: #ba2121; font-style: italic; } 
+code span.dt { color: #902000; } 
+code span.dv { color: #40a070; } 
+code span.er { color: #ff0000; font-weight: bold; } 
+code span.ex { } 
+code span.fl { color: #40a070; } 
+code span.fu { color: #06287e; } 
+code span.im { color: #008000; font-weight: bold; } 
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.kw { color: #007020; font-weight: bold; } 
+code span.op { color: #666666; } 
+code span.ot { color: #007020; } 
+code span.pp { color: #bc7a00; } 
+code span.sc { color: #4070a0; } 
+code span.ss { color: #bb6688; } 
+code span.st { color: #4070a0; } 
+code span.va { color: #19177c; } 
+code span.vs { color: #4070a0; } 
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } 
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    var j = 0;
+    while (j < rules.length) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+<style type="text/css">
+
+div.csl-bib-body { }
+div.csl-entry {
+clear: both;
+}
+.hanging div.csl-entry {
+margin-left:2em;
+text-indent:-2em;
+}
+div.csl-left-margin {
+min-width:2em;
+float:left;
+}
+div.csl-right-inline {
+margin-left:2em;
+padding-left:1em;
+}
+div.csl-indent {
+margin-left: 2em;
+}
+</style>
+
+<style type="text/css">body {
+background-color: #fff;
+margin: 1em auto;
+max-width: 700px;
+overflow: visible;
+padding-left: 2em;
+padding-right: 2em;
+font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 1.35;
+}
+#TOC {
+clear: both;
+margin: 0 0 10px 10px;
+padding: 4px;
+width: 400px;
+border: 1px solid #CCCCCC;
+border-radius: 5px;
+background-color: #f6f6f6;
+font-size: 13px;
+line-height: 1.3;
+}
+#TOC .toctitle {
+font-weight: bold;
+font-size: 15px;
+margin-left: 5px;
+}
+#TOC ul {
+padding-left: 40px;
+margin-left: -1.5em;
+margin-top: 5px;
+margin-bottom: 5px;
+}
+#TOC ul ul {
+margin-left: -2em;
+}
+#TOC li {
+line-height: 16px;
+}
+table {
+margin: 1em auto;
+border-width: 1px;
+border-color: #DDDDDD;
+border-style: outset;
+border-collapse: collapse;
+}
+table th {
+border-width: 2px;
+padding: 5px;
+border-style: inset;
+}
+table td {
+border-width: 1px;
+border-style: inset;
+line-height: 18px;
+padding: 5px 5px;
+}
+table, table th, table td {
+border-left-style: none;
+border-right-style: none;
+}
+table thead, table tr.even {
+background-color: #f7f7f7;
+}
+p {
+margin: 0.5em 0;
+}
+blockquote {
+background-color: #f6f6f6;
+padding: 0.25em 0.75em;
+}
+hr {
+border-style: solid;
+border: none;
+border-top: 1px solid #777;
+margin: 28px 0;
+}
+dl {
+margin-left: 0;
+}
+dl dd {
+margin-bottom: 13px;
+margin-left: 13px;
+}
+dl dt {
+font-weight: bold;
+}
+ul {
+margin-top: 0;
+}
+ul li {
+list-style: circle outside;
+}
+ul ul {
+margin-bottom: 0;
+}
+pre, code {
+background-color: #f7f7f7;
+border-radius: 3px;
+color: #333;
+white-space: pre-wrap; 
+}
+pre {
+border-radius: 3px;
+margin: 5px 0px 10px 0px;
+padding: 10px;
+}
+pre:not([class]) {
+background-color: #f7f7f7;
+}
+code {
+font-family: Consolas, Monaco, 'Courier New', monospace;
+font-size: 85%;
+}
+p > code, li > code {
+padding: 2px 0px;
+}
+div.figure {
+text-align: center;
+}
+img {
+background-color: #FFFFFF;
+padding: 2px;
+border: 1px solid #DDDDDD;
+border-radius: 3px;
+border: 1px solid #CCCCCC;
+margin: 0 5px;
+}
+h1 {
+margin-top: 0;
+font-size: 35px;
+line-height: 40px;
+}
+h2 {
+border-bottom: 4px solid #f7f7f7;
+padding-top: 10px;
+padding-bottom: 2px;
+font-size: 145%;
+}
+h3 {
+border-bottom: 2px solid #f7f7f7;
+padding-top: 10px;
+font-size: 120%;
+}
+h4 {
+border-bottom: 1px solid #f7f7f7;
+margin-left: 8px;
+font-size: 105%;
+}
+h5, h6 {
+border-bottom: 1px solid #ccc;
+font-size: 105%;
+}
+a {
+color: #0033dd;
+text-decoration: none;
+}
+a:hover {
+color: #6666ff; }
+a:visited {
+color: #800080; }
+a:visited:hover {
+color: #BB00BB; }
+a[href^="http:"] {
+text-decoration: underline; }
+a[href^="https:"] {
+text-decoration: underline; }
+
+code > span.kw { color: #555; font-weight: bold; } 
+code > span.dt { color: #902000; } 
+code > span.dv { color: #40a070; } 
+code > span.bn { color: #d14; } 
+code > span.fl { color: #d14; } 
+code > span.ch { color: #d14; } 
+code > span.st { color: #d14; } 
+code > span.co { color: #888888; font-style: italic; } 
+code > span.ot { color: #007020; } 
+code > span.al { color: #ff0000; font-weight: bold; } 
+code > span.fu { color: #900; font-weight: bold; } 
+code > span.er { color: #a61717; background-color: #e3d2d2; } 
+</style>
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">OW distribution</h1>
+<h4 class="author">Jaime Mosquera</h4>
+<h4 class="date">2022-12-21</h4>
+
+
+
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RelDists)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(EstimationTools)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gamlss)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Loading required package: splines</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Loading required package: gamlss.data</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Attaching package: &#39;gamlss.data&#39;</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; The following object is masked from &#39;package:datasets&#39;:</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     sleep</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Loading required package: gamlss.dist</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Loading required package: MASS</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Loading required package: nlme</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Attaching package: &#39;nlme&#39;</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; The following object is masked from &#39;package:BBmisc&#39;:</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     collapse</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  **********   GAMLSS Version 5.4-10  **********</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; For more on GAMLSS look at https://www.gamlss.com/</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Type gamlssNews() to see new features/changes/bug fixes.</span></span></code></pre></div>
+<div id="odd-weibull-distribution" class="section level1">
+<h1>Odd Weibull distribution</h1>
+<p>This distribution was proposed by Cooray <span class="citation">(2006)</span>. The probability density function <span class="math inline">\(f(x)\)</span> and cumulative density function
+<span class="math inline">\(F(x)\)</span> are given by:</p>
+<p><span class="math display">\[f(x) = \left( \frac{\sigma\nu}{x}
+\right) (\mu x)^\sigma e^{(\mu x)^\sigma} \left(e^{(\mu
+x)^{\sigma}}-1\right)^{\nu-1} \left[ 1 + \left(e^{(\mu
+x)^{\sigma}}-1\right)^\nu \right]^{-2},\]</span></p>
+<p>and</p>
+<p><span class="math display">\[F(x) = 1 - \left[ 1 + \left( e^{(\mu
+x)^{\sigma}} - 1 \right)^\nu \right]^{-1}, \quad x&gt;0,\]</span></p>
+<p>respectively, where <span class="math inline">\(\mu&gt;0, \quad
+\sigma\nu&gt;0\)</span>. <span class="math inline">\(\mu\)</span> is the
+scale parameter, <span class="math inline">\(\sigma\)</span> and <span class="math inline">\(\nu\)</span> are the shape parameters. Next figure
+shows possible shapes of the <span class="math inline">\(f(x)\)</span>
+and <span class="math inline">\(F(x)\)</span> for several values of the
+parameters.</p>
+<p><img src="data:image/png;base64,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" /><!-- --><img src="data:image/png;base64,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" /><!-- --></p>
+<p>The hazard function (hf) of the OW distribution is:</p>
+<p><span class="math display">\[h(x) = \left( \frac{\sigma\nu}{x}
+\right) (\mu x)^\sigma e^{(\mu x)^\sigma} \left(e^{(\mu
+x)^{\sigma}}-1\right)^{\nu-1} \left[ 1 + \left(e^{(\mu
+x)^{\sigma}}-1\right)^\nu \right]^{-1}, x&gt;0,\]</span></p>
+<p>where the hf can take the following shapes:</p>
+<ul>
+<li><p>Increasing if <span class="math inline">\(\sigma&gt;1\)</span>
+and <span class="math inline">\(\sigma\nu&gt;1\)</span>.</p></li>
+<li><p>Decreasing if <span class="math inline">\(\sigma&lt;1\)</span>
+and <span class="math inline">\(\sigma\nu&lt;1\)</span>.</p></li>
+<li><p>Unimodal shaped if either <span class="math inline">\(\sigma&lt;0\)</span> and <span class="math inline">\(\nu&lt;0\)</span> or <span class="math inline">\(\sigma&lt;1\)</span> and <span class="math inline">\(\sigma\nu\geq 1\)</span>.</p></li>
+<li><p>Bathtub shaped if <span class="math inline">\(\sigma&gt;1\)</span> and <span class="math inline">\(\sigma\nu\geq 1\)</span>.</p></li>
+</ul>
+<p>The figure shows possible shapes of the hf mentioned above:</p>
+<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASAAAAEgCAMAAAAjXV6yAAABSlBMVEUAAAAAABEAAB0AACoAADYAADoAAD8AAEoAAGAAAGYACIcACwAADasAFAAAOjoAOpAAQgAAQrYAXDoAXNsAZrYAdWYAdf8AjZAAjf8ApP8kAAAkDYckE846AAA6ADo6AGY6HQA6OgA6Ojo6OmY6ZpA6ZrY6kNtBAABBE85BF/BaCABaCGBaG/BmAABmADpmJQBmOgBmOjpmOmZmOpBmZmZmZpBmZrZmkJBmkLZmkNtmtttmtv9yDQByG/ByIPCKEzaKIPCQLACQOgCQOmaQZgCQZjqQZmaQZpCQ2/+gF2CgG4egIM6gIPC2FAC2MwC2ZgC2Zjq2kGa2kJC229u22/+2/7a2///bHQDbMwDbkDrbkGbbtmbbtpDbtrbb27bb29vb2//b/9vb///2+Qb/JQD/LAD/MwD/tmb/25D/27b/29v//7b//9v///+dFPbvAAAACXBIWXMAAA7DAAAOwwHHb6hkAAAOtklEQVR4nO2d+5fcNhXH3dDFXUi7SbOlTOiSR5uFli5QaHkkIWkWAt3GzQTaJgyFtiSpvWFm/v9fsSRL1uNKV7I9Yyfnfs/ZPfaM51r6WM+raztbk4LKxk7A1EWAEBEgRAQIEQFCRIAQESBEBAgRAUJEgBARIEQECBEBQkSAEBEgRAQIEQFCRIAQESBEBAgRAUJEgBARIEQECBEBQkSAEBEgRAQIEQFCRIAQESBEBAgRAUJEgBARIEQECBEBQkSAEBEgRAQIEQFCRIAQESBEBAgRAUJEgBARIEQECBEBQkSAEBEgRAQIEQFCRIAQESBEBAgRAUJEgBARIEQECBEBQkSAEBEgRAQIEQFCRIAQESBEBAgRAUJEgBARIEQECBEBQkSAEBEgRAQIEQFCNDCgTKosZ9mkNRYguVEDGtbywCJAiKYJqBj2ZH20ZUBu1YYAFbUGOd0AmmIJKggQBkj8TUITBMTZECC54QE0GULTA9SQIUCNfICmQogAIZouoIkQGg3QpYf1/9VxPWS8YH4TBWiRZTuf9EtB1ZqomsHrDSihsfaGBrT7kPHZ+aR8lO0b37Rc/ITmddZOD6D8RKuqTVQ65OXRPnTcIIAq/XqqHXWVK+Byc0Asj2X5OttsFQFoeXTI7O89jk28q9UxMzHXmCzMZKiExloMHGhcDLXDTsg3nGvFzcnklOUbxnc6FR8hYc2xmSJR/jQopweH4IEDADIuhtrhV3l1vA9cK26uBXTOuHQtlNWDi7xlOBTp59tNkRSAwDbD0IJX39XxDcfE6U+5ifbUc7gADQHIuBjmlWGAnGslzClATzPj0rWA5nt/Kk5/B1WjxiQOSJy2AWTILoSi1gIaApB+Mcwrs2CNqf5J6+6QgJ5m5w1rClD9u3q7ugadUjTSEYA4ytWf3cJhA/LW1wEAGefSdypePeAGQwKqssvmOEgBqpHW28tfggmf14S/hL+yDqzr2Okf3c/tKjb3tfibBMQK997jIKBFdrn0A6p3lkeimBgNiNDpJbjVsBO3+ttj14RV8b01bMNVjKXPaQ6FOb5fNyPWSLptghiaogiMdqK6+TrnFWTB6jr8p9lsI812A40061q9gGq419f33oMo8DFdZC8/3wFbMWvw4Te2sW5ecKkLTqCbX2ROvdGHPv/+dZb9BCwly6PoqYY36804lnW03lHiepMDRdbscTjwQFFu+EsQuL91DTLVMC+GvLhzOf2DZpY6IJ3Qiwmoz3kJEGLOBOTwIEAECDGHABqdEAFCNHlAYxMa1ye97ghI91GyQWOWge7SoAw/p9/HPVp0x24PQMbQU8z1kmXYUN5PIMWxBjfhtOcyCEHFxfnMnLzY0+A4GTaU9xNKaKzFrQAC2xvnQ3P6u0ivXY4NpucO0OrBQeOSrj8N+JPnV6Xf2lWCT5p7P6GERuco9sBIcyig+d4Xa+GStouQ4YJbHjGHyNxHKNYnXfkgTxZQc4mvWR8zAT5KX0MU7ZMW3k8ooeF8dDgw0hwGSGRZuKQtQICP0usRjPVJr32eo0RAX//1aq2PPo/9ld9cJCDukmaeV78/mX/k6+sjfdLtR05Co3NU/311RY5iXrse+zufOQyQQCMSbZUgo4tWnkv4PFE+6ZCNBECrBzu///xbtv2/r/9+5VqPhfG1B5ABgrmkZbsANEKqQvBM+hrpSJ+08n5qynORUDwv6+bAB0ap+Uo7Lxi8wENbDp2vpTkN0FoSMjkwl/Q7j4EvLBem8lyCivNJAzaSAf3LOlHb9IE+aRbaIsYhYZ+0H5Cu7c9YGz4JgFjlWn2rffKfppKFVjUW3lUNtTVNQHk6IPZPBhkZI4vQuhhbOITXxdRWFKCtE8rzOl1Mid18xevtInO7WHhldb770LOyKjeelOUTqaJ44lPgqw2JpSsdkGh6zVF5YG2+qo80PnFuZnnyogHihMz23g+oyvZtZLa5+Cq21TqmalgyoLo/vH6cGbMWbxWreElDqlgkoO02QnUL3Q3Q8ojnucrcIbrbSC9k8BzYSKtqGgnI+jIq9iUsv4m8LUCpgH4rio7Ri8HdvIqQ83TzC+lGjgekfbs86uRH1BUwoRWgzQUvtFGjnoGiLFOxgIyZbJb1BRQy0Q3QP6zJ1/IPahMKXtBCW+DgBcmMJaUhhLQzbfBZdtjNE90qZIKNETsAWn5kEHr2m14pzFTcrQ9Q63JdAxF4UYD8HtegCb0ApVSxZx9cUzONZ3ff/iL2l7C5SrbSPkCty1XJcRdh8npcQyaMApTUBq3uZtlrVz/84OoVNc3urHapzwNId7lKJQPyelwDJnKjACU20s/u8nK6806/4sPMtYPxlpAOSHe5SmkdWWQb5PO4BkyYBajDSPqbb2J/EmNujQAyo4Bfft/8GpXP4+o3YfEZP3hBA2Q0QbrLtZURRR0hn8fVb+K5AWS4XJVSAXk9rj4T3A00IiD9uTOysPPkMELWMEhzubaSx8QCCkRTQybyvoCEt6P/ONYuQRAgUJuds7p8UgH57qpKln5eWcfiAG2QUONn7QHIf89HqmxAjFBU3jdJCOCTDKjXjbSe8yYB2mAlk3x6APLE0HRQd0AbIwRVsOQ2qOe92PB5RZJms3EByYWe7oBEtOTwvZgEFJvxDbVCMJ/xBop8MtYsT5cl33gr8re3g2vN0YLv9i9L0xU7GiDmq5HL02VZb8xuR8byLnbeL076EzL9oC/lOd8pS8sVOwgg+FootzgYvMB8NdKff/87tlHcjqq4rKMoipt9ewvTk559P+c7ZfnUaj82d0Odcot7fNLaL+7wel+cRN1EyHvS4ubZ2IR7ZK7FZLnYYXfxV0MD8qxqSLe4L3hBDcrnu/cFoJt6UK7f4crCUavs3aiWOjLM9XsviR2ekMEBedbFpFvcsy6mXK71hug5TrILbUQ54HBV4lU2si+LCnPNzwhA2Z3NAPIGLwhA8MqqbJHZ8jQHVGVn21g8yOEqxYre6cFhHKCYMNc8P9M8COGOSnWb0JizhA8MrM2zU3mCF9rys+aDjyp7q5gpQpDDVc8yKxlxhPAw13qE2Oxk99tz4/m2NAwg21yzPF2Wi5oPG003hECHq3WGuOd1omGubAQtdh5lbbmPyLeloasY/68e4PIou8FzKwnBDtd1mzPx4IoIRFiYK59h8J3ys1fXKtVWQiOU3EjLUwUizNTy9OnB5WaKJQmBDlehpg1imzFlKBzm2szA6p26h2+CmrbVzTen8nTzrKir5WltnVpWMtDhKjTXQrhwQsEw15qPWjDP5LhsawNFGSYUjnIVKkuZVeM2elQ9HxwsQzXdSarUIFMN+MkL6loEn7yg0tcCSkLUh1Cu89kkoA7yA0ol1B1R3gLy8pkMoHWp5XI7hUgrP94KNiFARnPbpRClQoqpX+tpAdJT2aEQpREy+TwngGxCaS+USEGUR5afEQFdMju4euPlO2ZCZ1GMWgfp8mdsLBXjJ8ptPpZLT3e6jntLprqhn809T3YsQjGlSHOQ8gcvxlS13GyeS3ukZjhdRwWkbuhnG8W941fd0o4UIz1WVYy6UEYGHs7HGuub8a+jRXeoNMjFyBrQPtBczqQgc0asqnrCQBGC5PKxZotW/Ou4VYypuaG/KBZiVUEgMlyubzZTtR8DlLSHaWpPGJCMwnGuzckcf8OUAKkb+k8y6RriiXZcrrMZXJZUZpwnDHBCt1+5pblcneLDL4bjsZoSIHVDf1FI7wZL93cHoMt1Zoh/ZDmazN2i+PTiu0Vx7xe32B6MZ/KAmpSxJ/+q2PvyaXa/Tj7ocp03jdh5QemNXaNEOT62+dma0s/dZumzxsz+xKvYWrs3XstcxQCVpf9Jt2tZnGpAupwnDAiXK6fz6cUmVJaNSbXewHHpTQaQ8p6eHrBlLi1dzOXKKtqvwsNc/usGzZvZj1xeMzaCOKMGhoUj9qnj0psMoPaG/vkPPjbv7Bcu1x/+s1TyGNJ6sTqHs3MXZpbO7ZzXd7kti9JJXajYHxRCO3IVUzf037QjNpTLtbRlGmrcuvDTAXJWpurRgcaGqcXVELotKt69984KYK/cUuVrKpNVdH7gcEKKVi5l/5J9aZcyE5dRATcY3eFu+M0luCr8pFBFn0MSdBPqV7LT3t0ImOvheR+SC6CNLfu4GwFzPYPqclu9rJna2MKhuwGba2q7k8duSst8v3xHHwgvPbsb3Ir95IVh+HTNfa98Rx8IBy+4G93OO7YIEKItV7H0846t0RvpqWu0bv650QAkuwwUg0aTPh7CRprpJMtccHSHuxFr9IUD1FkEqJtRAoQYJUCIUQKEGCVAiFEChBglQC+iCBAiAoSIACEiQIgIECIChGh4QNCCK6jw6wMAiTdbRx3MImv2k1Lj0+CAAn40U8jrAwDL/HHOUQdX9ZHqxchRqfFqaECwJxYS8voAR8ujTL0mAzlYHBRvOqShAcG+fL+8rw9wtNj7Sw0o6mAVj5aaGkCDAwJXg/zyvj4AMMzaoKiDq90vj3jzlpoaQEMDgtcT/Yfbrw/wiVUWBijqYP56B+ZKT0wNpHEBBV4fYGlRw4kHtNMUnAkCSirUodcHAGajq5hodOoGaIJVLKVZDL4+wD5U6EaUfUGkpjPBRjqhYw2/PgDQPLabFw94qCbZzccPzZDXBwCaRw8UFxLl9AaKoQVX5zgmft9dylQj6uBKzmJiU+MVTVYRESBEBAgRAUJEgBARIEQECBEBQkSAEBEgRAQIEQFCRIAQESBEBAgRAUJEgBARIEQECBEBQkSAEBEgRAQIEQFCRIAQESBEBAgRAUJEgBARIEQECBEBQkSAEBEgRAQIEQFCNHVALMZ5uLe9d9DUAbFg3gX4wrYtaeqA2J070APMt6bJA1rPI98VvSFNH1A1xCvEu2vygFbHH/a5F6W3Jg9osfff4xE7sckDYjfu9Lrfq6+mDkjcAjViMz11QKOLACEiQIgIECIChIgAISJAiAgQIgKEiAAhIkCICBAiAoSIACEiQIgIECIChIgAISJAiAgQIgKEiAAhIkCICBCi/wMJgHV5nA8ziAAAAABJRU5ErkJggg==" /><!-- --></p>
+<p>The following figure illustrate the regions corresponding to the
+different hazard shapes:</p>
+<p><img src="data:image/png;base64,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" /><!-- --></p>
+</div>
+<div id="application-examples" class="section level1">
+<h1>Application examples</h1>
+<!-- In the examples below the following model is fitted -->
+<!-- \begin{align} -->
+<!-- y &\sim OW(\mu,\: \sigma,\: \nu) \\ -->
+<!-- \log (\mu) &= \alpha_0 \\ -->
+<!-- \sigma &= \beta_0 \\ -->
+<!-- \log (\nu) &= \gamma_0 -->
+<!-- \end{align} -->
+<div id="time-to-failure-on-electronic-equipment" class="section level2">
+<h2>Time to failure on electronic equipment</h2>
+<p>Cooray <span class="citation">(2015)</span> used the following data
+provided by Wang <span class="citation">(2000)</span> in order to fit an
+OW distribution through maximum likelihood estimation (MLE):</p>
+<p>5, 11, 21, 31, 46, 75, 98, 122, 145, 165, 195, 224, 245, 293, 321,
+330, 350, 420.</p>
+<p>The data above is the time to failure of an electronic device in
+hours. As an alternative to classical MLE, We used the function to fit
+an only-intercept model in order to estimate parameters of OW
+distribution without covariates. Using our <code>initValuesOW()</code>,
+we can obtain an initial guess and the valid region.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;equipment&quot;</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>my_initial_guess <span class="ot">&lt;-</span> <span class="fu">initValuesOW</span>(<span class="at">formula =</span> equipment <span class="sc">~</span> <span class="dv">1</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(my_initial_guess)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; --------------------------------------------------------------------</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Initial Values</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; sigma = 5</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; nu = 0.1</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; --------------------------------------------------------------------</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Search Regions</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; For sigma: all(sigma &gt; 1)</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; For nu: all(nu &lt; 1/sigma)</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; --------------------------------------------------------------------</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Hazard shape: Bathtub</span></span></code></pre></div>
+<p><code>initValuesOW()</code> function detected the Bathtub hazard
+shape, which corresponds to a convex-then-concave shape of total time on
+test (TTT) plot</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>old_par <span class="ot">&lt;-</span> <span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>)) <span class="co"># save previous graphical parameters</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mar =</span> <span class="fu">c</span>(<span class="fl">3.7</span>, <span class="fl">3.7</span>, <span class="dv">1</span>, <span class="dv">10</span>), <span class="at">mgp =</span> <span class="fu">c</span>(<span class="fl">2.5</span>, <span class="dv">1</span>, <span class="dv">0</span>))</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(my_initial_guess, <span class="at">las =</span> <span class="dv">1</span>)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">legend.HazardShape</span>(<span class="at">x =</span> <span class="fl">1.07</span>, <span class="at">y =</span> <span class="fl">1.04</span>, <span class="at">xpd =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<p><img src="data:image/png;base64,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" /><!-- --></p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(old_par) <span class="co"># restore previous graphical parameters</span></span></code></pre></div>
+<p>Therefore, we define the search region according to
+<code>initValuesOW()</code> outputs</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Custom search region</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>myvalues <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">sigma =</span> <span class="st">&quot;all(sigma &gt; 1)&quot;</span>,</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">nu =</span> <span class="st">&quot;all(nu &lt; 1/sigma)&quot;</span>)</span></code></pre></div>
+<p>and we perform the fit using <code>gamlss()</code></p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># gamlss set up</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>con.out <span class="ot">&lt;-</span><span class="fu">gamlss.control</span>(<span class="at">n.cyc =</span> <span class="dv">300</span>, <span class="at">trace=</span><span class="cn">TRUE</span>)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>myOW <span class="ot">&lt;-</span> <span class="fu">myOW_region</span>(<span class="at">family =</span> <span class="fu">OW</span>(<span class="at">sigma.link=</span><span class="st">&#39;identity&#39;</span>),</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>                    <span class="at">valid.values =</span> myvalues, <span class="at">initVal =</span> my_initial_guess)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>param_ee <span class="ot">&lt;-</span> <span class="fu">gamlss</span>(equipment <span class="sc">~</span> <span class="dv">1</span>, <span class="at">sigma.fo =</span> <span class="sc">~</span> <span class="dv">1</span>, <span class="at">nu.fo =</span> <span class="sc">~</span> <span class="dv">1</span>, </span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>                   <span class="at">sigma.start =</span> <span class="dv">5</span>, <span class="at">nu.start =</span> <span class="fl">0.1</span>,</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>                   <span class="at">control =</span> con.out, <span class="at">family =</span> myOW)</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; GAMLSS-RS iteration 1: Global Deviance = 220.3699 </span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; GAMLSS-RS iteration 2: Global Deviance = 218.2162 </span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; GAMLSS-RS iteration 3: Global Deviance = 217.5282 </span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; GAMLSS-RS iteration 4: Global Deviance = 217.3291 </span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; GAMLSS-RS iteration 5: Global Deviance = 217.2142 </span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; GAMLSS-RS iteration 6: Global Deviance = 217.1047 </span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; GAMLSS-RS iteration 7: Global Deviance = 216.9932 </span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; GAMLSS-RS iteration 8: Global Deviance = 216.8872 </span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; GAMLSS-RS iteration 9: Global Deviance = 216.7914 </span></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; GAMLSS-RS iteration 10: Global Deviance = 216.707 </span></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; GAMLSS-RS iteration 11: Global Deviance = 216.6337 </span></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; GAMLSS-RS iteration 12: Global Deviance = 216.5706 </span></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; GAMLSS-RS iteration 13: Global Deviance = 216.5168 </span></span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; GAMLSS-RS iteration 14: Global Deviance = 216.471 </span></span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; GAMLSS-RS iteration 15: Global Deviance = 216.4324 </span></span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; GAMLSS-RS iteration 16: Global Deviance = 216.3997 </span></span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; GAMLSS-RS iteration 17: Global Deviance = 216.3723 </span></span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; GAMLSS-RS iteration 18: Global Deviance = 216.3492 </span></span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; GAMLSS-RS iteration 19: Global Deviance = 216.3299 </span></span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; GAMLSS-RS iteration 20: Global Deviance = 216.3136 </span></span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; GAMLSS-RS iteration 21: Global Deviance = 216.3 </span></span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; GAMLSS-RS iteration 22: Global Deviance = 216.2885 </span></span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; GAMLSS-RS iteration 23: Global Deviance = 216.2789 </span></span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; GAMLSS-RS iteration 24: Global Deviance = 216.2708 </span></span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; GAMLSS-RS iteration 25: Global Deviance = 216.264 </span></span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; GAMLSS-RS iteration 26: Global Deviance = 216.2583 </span></span>
+<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; GAMLSS-RS iteration 27: Global Deviance = 216.2533 </span></span>
+<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; GAMLSS-RS iteration 28: Global Deviance = 216.2488 </span></span>
+<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; GAMLSS-RS iteration 29: Global Deviance = 216.245 </span></span>
+<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; GAMLSS-RS iteration 30: Global Deviance = 216.2418 </span></span>
+<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; GAMLSS-RS iteration 31: Global Deviance = 216.2391 </span></span>
+<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; GAMLSS-RS iteration 32: Global Deviance = 216.2369 </span></span>
+<span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; GAMLSS-RS iteration 33: Global Deviance = 216.2351 </span></span>
+<span id="cb6-42"><a href="#cb6-42" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; GAMLSS-RS iteration 34: Global Deviance = 216.2336 </span></span>
+<span id="cb6-43"><a href="#cb6-43" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; GAMLSS-RS iteration 35: Global Deviance = 216.232 </span></span>
+<span id="cb6-44"><a href="#cb6-44" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; GAMLSS-RS iteration 36: Global Deviance = 216.2306 </span></span>
+<span id="cb6-45"><a href="#cb6-45" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; GAMLSS-RS iteration 37: Global Deviance = 216.2294 </span></span>
+<span id="cb6-46"><a href="#cb6-46" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; GAMLSS-RS iteration 38: Global Deviance = 216.2284</span></span>
+<span id="cb6-47"><a href="#cb6-47" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(param_ee)</span>
+<span id="cb6-48"><a href="#cb6-48" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ******************************************************************</span></span>
+<span id="cb6-49"><a href="#cb6-49" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Family:  c(&quot;OW&quot;, &quot;Odd Weibull&quot;) </span></span>
+<span id="cb6-50"><a href="#cb6-50" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb6-51"><a href="#cb6-51" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Call:  gamlss(formula = equipment ~ 1, sigma.formula = ~1,  </span></span>
+<span id="cb6-52"><a href="#cb6-52" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     nu.formula = ~1, family = myOW, sigma.start = 5,  </span></span>
+<span id="cb6-53"><a href="#cb6-53" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     nu.start = 0.1, control = con.out) </span></span>
+<span id="cb6-54"><a href="#cb6-54" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb6-55"><a href="#cb6-55" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Fitting method: RS() </span></span>
+<span id="cb6-56"><a href="#cb6-56" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb6-57"><a href="#cb6-57" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ------------------------------------------------------------------</span></span>
+<span id="cb6-58"><a href="#cb6-58" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Mu link function:  log</span></span>
+<span id="cb6-59"><a href="#cb6-59" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Mu Coefficients:</span></span>
+<span id="cb6-60"><a href="#cb6-60" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;             Estimate Std. Error t value Pr(&gt;|t|)    </span></span>
+<span id="cb6-61"><a href="#cb6-61" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; (Intercept)   -5.240      0.205  -25.56 8.79e-14 ***</span></span>
+<span id="cb6-62"><a href="#cb6-62" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ---</span></span>
+<span id="cb6-63"><a href="#cb6-63" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></span>
+<span id="cb6-64"><a href="#cb6-64" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb6-65"><a href="#cb6-65" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ------------------------------------------------------------------</span></span>
+<span id="cb6-66"><a href="#cb6-66" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Sigma link function:  identity</span></span>
+<span id="cb6-67"><a href="#cb6-67" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Sigma Coefficients:</span></span>
+<span id="cb6-68"><a href="#cb6-68" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;             Estimate Std. Error t value Pr(&gt;|t|)  </span></span>
+<span id="cb6-69"><a href="#cb6-69" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; (Intercept)    3.283      1.423   2.307   0.0357 *</span></span>
+<span id="cb6-70"><a href="#cb6-70" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ---</span></span>
+<span id="cb6-71"><a href="#cb6-71" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></span>
+<span id="cb6-72"><a href="#cb6-72" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb6-73"><a href="#cb6-73" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ------------------------------------------------------------------</span></span>
+<span id="cb6-74"><a href="#cb6-74" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Nu link function:  log </span></span>
+<span id="cb6-75"><a href="#cb6-75" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Nu Coefficients:</span></span>
+<span id="cb6-76"><a href="#cb6-76" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;             Estimate Std. Error t value Pr(&gt;|t|)  </span></span>
+<span id="cb6-77"><a href="#cb6-77" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; (Intercept)  -1.2715     0.5019  -2.534   0.0229 *</span></span>
+<span id="cb6-78"><a href="#cb6-78" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ---</span></span>
+<span id="cb6-79"><a href="#cb6-79" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></span>
+<span id="cb6-80"><a href="#cb6-80" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb6-81"><a href="#cb6-81" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ------------------------------------------------------------------</span></span>
+<span id="cb6-82"><a href="#cb6-82" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; No. of observations in the fit:  18 </span></span>
+<span id="cb6-83"><a href="#cb6-83" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Degrees of Freedom for the fit:  3</span></span>
+<span id="cb6-84"><a href="#cb6-84" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;       Residual Deg. of Freedom:  15 </span></span>
+<span id="cb6-85"><a href="#cb6-85" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                       at cycle:  38 </span></span>
+<span id="cb6-86"><a href="#cb6-86" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  </span></span>
+<span id="cb6-87"><a href="#cb6-87" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Global Deviance:     216.2284 </span></span>
+<span id="cb6-88"><a href="#cb6-88" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;             AIC:     222.2284 </span></span>
+<span id="cb6-89"><a href="#cb6-89" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;             SBC:     224.8996 </span></span>
+<span id="cb6-90"><a href="#cb6-90" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ******************************************************************</span></span></code></pre></div>
+<p>In the following table we summarize the results and compare them with
+those gotten by Cooray <span class="citation">(2015)</span></p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">Parameter</th>
+<th align="center">MLE <span class="citation">(Cooray 2015)</span></th>
+<th align="center">GAMLSS</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><span class="math inline">\(\mu\)</span></td>
+<td align="center">5.35e-03</td>
+<td align="center">5.30e-03</td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(\sigma\)</span></td>
+<td align="center">3.22388</td>
+<td align="center">3.2828</td>
+</tr>
+<tr class="odd">
+<td align="center"><span class="math inline">\(\nu\)</span></td>
+<td align="center">0.28424</td>
+<td align="center">0.2804</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="mortality-in-mice-exposed-to-radiation" class="section level2">
+<h2>Mortality in mice exposed to radiation</h2>
+<p>Cooray <span class="citation">(2006)</span> used a dataset with 208
+data points provided by Kimball <span class="citation">(1960)</span>
+with the ages at death in weeks for male mice exposed to 240r of gamma
+radiation. Again, we implement a workflow for parameter estimation with
+<code>myOW_region</code> and <code>gamlss</code> functions.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Do not forget to load &#39;RelDists&#39; package</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;mice&quot;</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>init_vals <span class="ot">&lt;-</span> <span class="fu">initValuesOW</span>(<span class="at">formula =</span> mice <span class="sc">~</span> <span class="dv">1</span>)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(init_vals)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; --------------------------------------------------------------------</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Initial Values</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; sigma = 2</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; nu = 6</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; --------------------------------------------------------------------</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Search Regions</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; For sigma: all(sigma &gt; 1)</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; For nu: all(nu &gt; 1/sigma)</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; --------------------------------------------------------------------</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Hazard shape: Increasing</span></span></code></pre></div>
+<p>With <code>initValuesOW()</code> function we identified an increasing
+hazard shape, as well as was stated by Cooray <span class="citation">(2006)</span>, because TTT plot is concave.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>old_par <span class="ot">&lt;-</span> <span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>)) <span class="co"># save previous graphical parameters</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mar =</span> <span class="fu">c</span>(<span class="fl">3.7</span>, <span class="fl">3.7</span>, <span class="dv">1</span>, <span class="dv">10</span>), <span class="at">mgp =</span> <span class="fu">c</span>(<span class="fl">2.5</span>, <span class="dv">1</span>, <span class="dv">0</span>))</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(init_vals, <span class="at">las =</span> <span class="dv">1</span>)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="fu">legend.HazardShape</span>(<span class="at">x =</span> <span class="fl">1.07</span>, <span class="at">y =</span> <span class="fl">1.04</span>, <span class="at">xpd =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASAAAAEgCAMAAAAjXV6yAAAA1VBMVEUAAAAAADoAAGYAOjoAOmYAOpAAZrY6AAA6ADo6AGY6OgA6Ojo6OmY6OpA6ZmY6ZpA6ZrY6kNtmAABmADpmAGZmOgBmOjpmOmZmZjpmZmZmZpBmkJBmkLZmkNtmtrZmtttmtv+QOgCQOjqQZgCQZjqQZmaQkGaQtpCQtraQttuQ2/+2ZgC2Zjq2kGa2kJC2tpC2tra2ttu225C229u22/+2/7a2///bkDrbkGbbtmbbtrbb27bb29vb2//b///fU2v/tmb/25D/27b/29v//7b//9v///8aaeXVAAAACXBIWXMAAA7DAAAOwwHHb6hkAAAKzklEQVR4nO2dC3fbxBaFlZY4pYHb2kAhhVscaHnEBXIvD0OBRAm2/v9PYl6S5oxmdGRpYlujvddq/FK3pS8zZx46mckKqFXZoU/g2AVAjACIEQAxAiBGAMQIgBgBECMAYgRAjACIEQAxAiBGAMQIgBgBECMAYgRAjGIBysasvQAKgov0BQ8oAGI0ENDd+7+VT/MsO7nazSd9QJvFoxJQLujkAUJ+H66CH4cGARKFpgS0vZyLn6tZZx8+Ah6HhgDKs3leAro7W4qf66pAcT6Szu1t4oCEakBPruyX6n+3NJWaz5QA6fATCEINH43nNvUqVvQFZIpP8jGoaK9iQZ+az5QA7RCkaz4TArRDM6/br6kB6t5RtCrYVABtL2fi6brjUMPmMwTQylic3vg/3yyWzpPmp5tFcBBf/ub3Pli1G7BhgEJkOqmmppsX7xOpgwAqyw4z2dL+caKAygJkXjD/qe3zGtDd2StRVeZ3Z1m2FFf3rXicawSbj77JHv2qWIgIkM0KXTOXxwsoswtQK6CMOwMbkAh+axk1RDdDYFqKUeJSA1qIgxSLtThks5irdlY/P0pAThd6GCATTecC0LwofyzVY7E+vdGAyqIknwhtPrrSfbZjBlS3XtFK0LL+oXusosOhuZjapN/VyrPsiAFZEShiDLIBPTGDQgqovGYRih79/2hLUFmAzItYrVgXQKYEVYemAIhRsIrN9YcEUBmDVMc2P9oq5rbxDwNIjnmqVqxs0WXLJXr8uvCIwH68gOwIHWWocXLlAPr8rOrp1IDKfpAaEK10BdQ6IkBZVEAB2e1VDO0X0C0AtfmQAgRATZ+9AIqtPQJq1DAAoj50mKHfifQFD6j9A7LfByDbB4DafZyBqn5riKuaUCb3mUTvzzsBPUT7BZRFBCSHE6I/bd8oiE6nGDMgfQ9O31ExGjmgRg3zALptEznSImNPQ+sRmJyjLgdg8/IwPRorh2dyuloflKsJW+vA5rm3XlgElYAy0k30AGrlQwGJKjYzz+xpaA1IXrL5p6c/impWugK0OL3RkFenN+RAz7m3XliLcvte4dr8QgI+WRdAO0nexVAx2p6GriZ/xJBDTwKZm7/VrHQFaK5zCRQ060DPuQfFnD+527w20zAhn/iAClnPMvW7NzWlAqQZ6HMzg7NyjFYDMjMh4ihyoOfcg2o/f5KvYErrLOQjWJAQFAeQ/MpHv9mzrASQmTHSgMwkDwEkT1jUMHJg89zDaj9/kvHCA6Jt2GBA5e9bcAkCsrsA3hIkqtWvuhAFv2cIIJIzxVSx6IDKViyX9wrraWgbEGn16xhUBqilenWhwlC4ezAAkJN1l7vZHVaqRHOcMbyK5SqvI1c3DutpaDLRKn9pVVfSzEpvL2XrlZX0VqotJAdSRQMkYkGopSwyZ7a1iBKD1FDjRN0praehnal6ezBiZqXlf3tVFS9T6MmBzrm3aIcqxqTguYC6ZHd0VuxJRKJYQZrJcm2UIP1+2oBIM2/6IkwJct9PGxDtKHaKQe77scYyD6hBQw2Tlmj6QMHxngLkqWHpA+r+JQDEfIkaaDT8AKj0USGoyQOASh9/NwiAKh+3EQMgxweAmC8JAhqB9geoaAKK5H8wRQTkGcsDUO0DQIwPADE+vhn7iP4HU+QS9GD+BxMAMQIgRhFH86QbFNv/YEIJYgRAjOIB8s0nApDl4+0GAVDlQ+cTAajh453sAKDah67GlR6gP9+cC738ubdP2oD+eFpOrj3+sq9PwlVs+/bk85//lq/++fOHp8/Jehm5nRIkcypnIR/ffGIigN6SUvPHc+sFuTefq0UgZgGfdAH97uSz3P23euokcapU3EB2B2nFrGcRz/Ugyort3+5776pKRvKDyF8KN3wCa0omAEhre6mDNC0fJMNMpos62R32vRPvYD4dQCtvzSFJZWp1GvKXJbZP4oDKDFpHFNBJ2zqK/sF8QoCWvk9JFVubv5rwHun0g1z/8cpcQKDm0CRODcgfqjNfclCRDqBABj1p5svMfn8V8yUHFekAqlYbdC6f/rWP6ChqZB4fG5A95oh9wvsWdwEkiVOMO4JJnIFlp5IH1NkHgBifqVaxzj7JlqBIOXIplyAuCa2bj38wnwQg9TCUERnMJwioGMrIBkSWxxngeRQiFzCgsgXGqokBUm/0u6TAbEeCgPr6AFC7/KkLAFQptElNEoDU2h/+0XxnBaaD0gAUQ3JlGwBqkQWIrkAVyf9gEhfwo7M3w+aLHj5WDEoO0OYlIXT/aZ8wlDKg4v7F8+ru6v3rD37p45NyFSuK7esse3x+8eL8aZY967cZSt2KOYu8DT3BQ8tcwP3rM9nInzzrVXwKVYK8f4SZCiCh7V9/DfCZAKBhSr2KGa17d6arIO2MONICpLbF6afAYD41QB83Ck/uLFsW2vIrtONsWoCKlXuD3t3WMA9tpzeRErRwYpC7MaY4IATI9fL5j1HtF+Cu67Y+/ToASE6XpQ7o3ZtGor2zOa94GYpBWWA2Ox1Am09Ozs/P3mtmv9QL38kKRwGR9S8SB/T2e/nzno7sKSCZHxQsQaaKNZYJjHmyh5AerL65+OyDC6UX/7mwGNGFJuWLliqWMqB31z+9vFZ68931/yxAdpBem8rkdgVKH19HOhFAUqqKbX9/Tj5t7n/dVsX0Y8B/rKouYHuZPT7LnCDd3P+6rYqpx2QBFcU/19fN2SCSo1hMG1AUHwBifACo3ae50GQk/4MpGqBA2gwA1T4TmO4Y6JP2WCyCDwAxPgDU7oMY1OqDVqyLT5MSABEfAGJ8AIjxASDGB4AYHwBifACI8QGgdh8sNLm7DwAxPgDE+AAQ4wNAjA8AMT7JA7KTONVCcMEt/Pr5H72YC7DvzW8v1bb2s6BPygssBeTZRjS4Ee0kAXmYBDeinSagJ42VAf0LLk4VUHP34pxEabqJGQBJPrOwzwQBuVUsD7XykwVEg/Q6yGeqgGgS59qf4Fr6JJ5I7pfdUQxtFN7qkzogO4nT5EmH+0F9/I9eGKwyAiBGAMQIgBgBEKN4gBJeoiuODwAxPgDE+AAQ4wNAjA8AMT4AxPgAULsPEsn7+QAQ4wNAjA8AMT4AxPgAEOMDQIwPAJU+ASMAKn0AiPEBIMZnqoDISpzuspy2z0QB0d3C3dWWbJ9pAvLsFm6v12X7THM0T3cLb81y9S/EmTygxjKBNKOTLjS5u/8ItEOOYjOjk/oAUDugacYgpopZPtNsxXYI0r38R6BozXwv/xEoWkexn//xa4ckzuqF1yekyOe7d0WdMKt+0FejFgAxAiBGAMQIgBgBECMAYgRAjACIEQAxGv0FPLQAiBEAMQIgRgDECIAYARAjAGIEQIwAiBEAMQIgRgDEaCCgrhl649UwQJ1vvI5XgwB1v3U/Xg0C1D35Y7waBqhz+tB4NQhQ9wS08QqAGKGKMUKQZoRmnhE6iowGDjW6ZuiNVxisMgIgRgDECIAYARAjAGIEQIwAiBEAMQIgRgDECIAYARAjAGIEQIwAiBEAMYoJaLOQ0/Z3H95E9Dy44pegfBbd8pCKD2i1jG55SEWvYtuvrjaLV4usZautUSk6IBGCNgu5IWsiNziiAxIhaLOYlzdax6/ogEQIUo+6SRu/YgMSIQiAQpJMZC8IgAKSTGQvCIACkkxWSwAKSjCRIQiAJiUAYgRAjACIEQAxAiBGAMToX3RQeBsbLBzgAAAAAElFTkSuQmCC" /><!-- --></p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(old_par) <span class="co"># restore previous graphical parameters</span></span></code></pre></div>
+<p>Hence, we implement the estimation procedure</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># gamlss set up</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>myOW <span class="ot">&lt;-</span> <span class="fu">myOW_region</span>(<span class="at">initVal =</span> init_vals)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Custom search region</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Do not forget to load &#39;gamlss&#39; library</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>param_mm <span class="ot">&lt;-</span> <span class="fu">gamlss</span>(mice <span class="sc">~</span> <span class="dv">1</span>, <span class="at">sigma.fo =</span> <span class="sc">~</span> <span class="dv">1</span>, <span class="at">nu.fo =</span> <span class="sc">~</span> <span class="dv">1</span>,</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>                   <span class="at">sigma.start =</span> <span class="dv">2</span>, <span class="at">nu.start =</span> <span class="dv">6</span>,</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>                   <span class="at">control =</span> con.out,</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>                   <span class="at">family =</span> myOW)</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; GAMLSS-RS iteration 1: Global Deviance = 2031.511 </span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; GAMLSS-RS iteration 2: Global Deviance = 2006.257 </span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; GAMLSS-RS iteration 3: Global Deviance = 2005.168 </span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; GAMLSS-RS iteration 4: Global Deviance = 2005.063 </span></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; GAMLSS-RS iteration 5: Global Deviance = 2004.941 </span></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; GAMLSS-RS iteration 6: Global Deviance = 2004.817 </span></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; GAMLSS-RS iteration 7: Global Deviance = 2004.69 </span></span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; GAMLSS-RS iteration 8: Global Deviance = 2004.558 </span></span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; GAMLSS-RS iteration 9: Global Deviance = 2004.423 </span></span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; GAMLSS-RS iteration 10: Global Deviance = 2004.283 </span></span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; GAMLSS-RS iteration 11: Global Deviance = 2004.139 </span></span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; GAMLSS-RS iteration 12: Global Deviance = 2003.991 </span></span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; GAMLSS-RS iteration 13: Global Deviance = 2003.838 </span></span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; GAMLSS-RS iteration 14: Global Deviance = 2003.68 </span></span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; GAMLSS-RS iteration 15: Global Deviance = 2003.517 </span></span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; GAMLSS-RS iteration 16: Global Deviance = 2003.348 </span></span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; GAMLSS-RS iteration 17: Global Deviance = 2003.174 </span></span>
+<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; GAMLSS-RS iteration 18: Global Deviance = 2002.993 </span></span>
+<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; GAMLSS-RS iteration 19: Global Deviance = 2002.807 </span></span>
+<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; GAMLSS-RS iteration 20: Global Deviance = 2002.613 </span></span>
+<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; GAMLSS-RS iteration 21: Global Deviance = 2002.413 </span></span>
+<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; GAMLSS-RS iteration 22: Global Deviance = 2002.205 </span></span>
+<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; GAMLSS-RS iteration 23: Global Deviance = 2001.989 </span></span>
+<span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; GAMLSS-RS iteration 24: Global Deviance = 2001.766 </span></span>
+<span id="cb10-34"><a href="#cb10-34" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; GAMLSS-RS iteration 25: Global Deviance = 2001.533 </span></span>
+<span id="cb10-35"><a href="#cb10-35" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; GAMLSS-RS iteration 26: Global Deviance = 2001.292 </span></span>
+<span id="cb10-36"><a href="#cb10-36" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; GAMLSS-RS iteration 27: Global Deviance = 2001.041 </span></span>
+<span id="cb10-37"><a href="#cb10-37" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; GAMLSS-RS iteration 28: Global Deviance = 2000.78 </span></span>
+<span id="cb10-38"><a href="#cb10-38" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; GAMLSS-RS iteration 29: Global Deviance = 2000.507 </span></span>
+<span id="cb10-39"><a href="#cb10-39" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; GAMLSS-RS iteration 30: Global Deviance = 2000.224 </span></span>
+<span id="cb10-40"><a href="#cb10-40" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; GAMLSS-RS iteration 31: Global Deviance = 1999.929 </span></span>
+<span id="cb10-41"><a href="#cb10-41" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; GAMLSS-RS iteration 32: Global Deviance = 1999.621 </span></span>
+<span id="cb10-42"><a href="#cb10-42" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; GAMLSS-RS iteration 33: Global Deviance = 1999.299 </span></span>
+<span id="cb10-43"><a href="#cb10-43" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; GAMLSS-RS iteration 34: Global Deviance = 1998.964 </span></span>
+<span id="cb10-44"><a href="#cb10-44" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; GAMLSS-RS iteration 35: Global Deviance = 1998.613 </span></span>
+<span id="cb10-45"><a href="#cb10-45" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; GAMLSS-RS iteration 36: Global Deviance = 1998.247 </span></span>
+<span id="cb10-46"><a href="#cb10-46" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; GAMLSS-RS iteration 37: Global Deviance = 1997.864 </span></span>
+<span id="cb10-47"><a href="#cb10-47" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; GAMLSS-RS iteration 38: Global Deviance = 1997.463 </span></span>
+<span id="cb10-48"><a href="#cb10-48" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; GAMLSS-RS iteration 39: Global Deviance = 1997.037 </span></span>
+<span id="cb10-49"><a href="#cb10-49" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; GAMLSS-RS iteration 40: Global Deviance = 1996.591 </span></span>
+<span id="cb10-50"><a href="#cb10-50" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; GAMLSS-RS iteration 41: Global Deviance = 1996.124 </span></span>
+<span id="cb10-51"><a href="#cb10-51" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; GAMLSS-RS iteration 42: Global Deviance = 1995.634 </span></span>
+<span id="cb10-52"><a href="#cb10-52" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; GAMLSS-RS iteration 43: Global Deviance = 1995.121 </span></span>
+<span id="cb10-53"><a href="#cb10-53" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; GAMLSS-RS iteration 44: Global Deviance = 1994.584 </span></span>
+<span id="cb10-54"><a href="#cb10-54" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; GAMLSS-RS iteration 45: Global Deviance = 1994.022 </span></span>
+<span id="cb10-55"><a href="#cb10-55" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; GAMLSS-RS iteration 46: Global Deviance = 1993.434 </span></span>
+<span id="cb10-56"><a href="#cb10-56" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; GAMLSS-RS iteration 47: Global Deviance = 1992.822 </span></span>
+<span id="cb10-57"><a href="#cb10-57" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; GAMLSS-RS iteration 48: Global Deviance = 1992.183 </span></span>
+<span id="cb10-58"><a href="#cb10-58" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; GAMLSS-RS iteration 49: Global Deviance = 1991.518 </span></span>
+<span id="cb10-59"><a href="#cb10-59" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; GAMLSS-RS iteration 50: Global Deviance = 1990.826 </span></span>
+<span id="cb10-60"><a href="#cb10-60" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; GAMLSS-RS iteration 51: Global Deviance = 1990.111 </span></span>
+<span id="cb10-61"><a href="#cb10-61" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; GAMLSS-RS iteration 52: Global Deviance = 1989.373 </span></span>
+<span id="cb10-62"><a href="#cb10-62" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; GAMLSS-RS iteration 53: Global Deviance = 1988.617 </span></span>
+<span id="cb10-63"><a href="#cb10-63" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; GAMLSS-RS iteration 54: Global Deviance = 1987.847 </span></span>
+<span id="cb10-64"><a href="#cb10-64" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; GAMLSS-RS iteration 55: Global Deviance = 1987.068 </span></span>
+<span id="cb10-65"><a href="#cb10-65" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; GAMLSS-RS iteration 56: Global Deviance = 1986.285 </span></span>
+<span id="cb10-66"><a href="#cb10-66" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; GAMLSS-RS iteration 57: Global Deviance = 1985.506 </span></span>
+<span id="cb10-67"><a href="#cb10-67" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; GAMLSS-RS iteration 58: Global Deviance = 1984.74 </span></span>
+<span id="cb10-68"><a href="#cb10-68" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; GAMLSS-RS iteration 59: Global Deviance = 1983.994 </span></span>
+<span id="cb10-69"><a href="#cb10-69" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; GAMLSS-RS iteration 60: Global Deviance = 1983.277 </span></span>
+<span id="cb10-70"><a href="#cb10-70" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; GAMLSS-RS iteration 61: Global Deviance = 1982.597 </span></span>
+<span id="cb10-71"><a href="#cb10-71" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; GAMLSS-RS iteration 62: Global Deviance = 1981.963 </span></span>
+<span id="cb10-72"><a href="#cb10-72" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; GAMLSS-RS iteration 63: Global Deviance = 1981.381 </span></span>
+<span id="cb10-73"><a href="#cb10-73" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; GAMLSS-RS iteration 64: Global Deviance = 1980.854 </span></span>
+<span id="cb10-74"><a href="#cb10-74" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; GAMLSS-RS iteration 65: Global Deviance = 1980.384 </span></span>
+<span id="cb10-75"><a href="#cb10-75" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; GAMLSS-RS iteration 66: Global Deviance = 1979.972 </span></span>
+<span id="cb10-76"><a href="#cb10-76" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; GAMLSS-RS iteration 67: Global Deviance = 1979.619 </span></span>
+<span id="cb10-77"><a href="#cb10-77" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; GAMLSS-RS iteration 68: Global Deviance = 1979.317 </span></span>
+<span id="cb10-78"><a href="#cb10-78" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; GAMLSS-RS iteration 69: Global Deviance = 1979.062 </span></span>
+<span id="cb10-79"><a href="#cb10-79" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; GAMLSS-RS iteration 70: Global Deviance = 1978.85 </span></span>
+<span id="cb10-80"><a href="#cb10-80" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; GAMLSS-RS iteration 71: Global Deviance = 1978.676 </span></span>
+<span id="cb10-81"><a href="#cb10-81" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; GAMLSS-RS iteration 72: Global Deviance = 1978.533 </span></span>
+<span id="cb10-82"><a href="#cb10-82" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; GAMLSS-RS iteration 73: Global Deviance = 1978.417 </span></span>
+<span id="cb10-83"><a href="#cb10-83" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; GAMLSS-RS iteration 74: Global Deviance = 1978.324 </span></span>
+<span id="cb10-84"><a href="#cb10-84" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; GAMLSS-RS iteration 75: Global Deviance = 1978.25 </span></span>
+<span id="cb10-85"><a href="#cb10-85" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; GAMLSS-RS iteration 76: Global Deviance = 1978.192 </span></span>
+<span id="cb10-86"><a href="#cb10-86" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; GAMLSS-RS iteration 77: Global Deviance = 1978.146 </span></span>
+<span id="cb10-87"><a href="#cb10-87" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; GAMLSS-RS iteration 78: Global Deviance = 1978.112 </span></span>
+<span id="cb10-88"><a href="#cb10-88" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; GAMLSS-RS iteration 79: Global Deviance = 1978.085 </span></span>
+<span id="cb10-89"><a href="#cb10-89" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; GAMLSS-RS iteration 80: Global Deviance = 1978.064 </span></span>
+<span id="cb10-90"><a href="#cb10-90" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; GAMLSS-RS iteration 81: Global Deviance = 1978.047 </span></span>
+<span id="cb10-91"><a href="#cb10-91" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; GAMLSS-RS iteration 82: Global Deviance = 1978.034 </span></span>
+<span id="cb10-92"><a href="#cb10-92" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; GAMLSS-RS iteration 83: Global Deviance = 1978.024 </span></span>
+<span id="cb10-93"><a href="#cb10-93" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; GAMLSS-RS iteration 84: Global Deviance = 1978.016 </span></span>
+<span id="cb10-94"><a href="#cb10-94" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; GAMLSS-RS iteration 85: Global Deviance = 1978.01 </span></span>
+<span id="cb10-95"><a href="#cb10-95" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; GAMLSS-RS iteration 86: Global Deviance = 1978.005 </span></span>
+<span id="cb10-96"><a href="#cb10-96" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; GAMLSS-RS iteration 87: Global Deviance = 1978.001 </span></span>
+<span id="cb10-97"><a href="#cb10-97" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; GAMLSS-RS iteration 88: Global Deviance = 1977.998 </span></span>
+<span id="cb10-98"><a href="#cb10-98" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; GAMLSS-RS iteration 89: Global Deviance = 1977.996 </span></span>
+<span id="cb10-99"><a href="#cb10-99" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; GAMLSS-RS iteration 90: Global Deviance = 1977.994 </span></span>
+<span id="cb10-100"><a href="#cb10-100" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; GAMLSS-RS iteration 91: Global Deviance = 1977.992 </span></span>
+<span id="cb10-101"><a href="#cb10-101" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; GAMLSS-RS iteration 92: Global Deviance = 1977.991 </span></span>
+<span id="cb10-102"><a href="#cb10-102" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; GAMLSS-RS iteration 93: Global Deviance = 1977.99</span></span>
+<span id="cb10-103"><a href="#cb10-103" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(param_mm)</span>
+<span id="cb10-104"><a href="#cb10-104" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ******************************************************************</span></span>
+<span id="cb10-105"><a href="#cb10-105" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Family:  c(&quot;OW&quot;, &quot;Odd Weibull&quot;) </span></span>
+<span id="cb10-106"><a href="#cb10-106" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb10-107"><a href="#cb10-107" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Call:  gamlss(formula = mice ~ 1, sigma.formula = ~1, nu.formula = ~1,  </span></span>
+<span id="cb10-108"><a href="#cb10-108" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     family = myOW, sigma.start = 2, nu.start = 6, control = con.out) </span></span>
+<span id="cb10-109"><a href="#cb10-109" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb10-110"><a href="#cb10-110" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Fitting method: RS() </span></span>
+<span id="cb10-111"><a href="#cb10-111" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb10-112"><a href="#cb10-112" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ------------------------------------------------------------------</span></span>
+<span id="cb10-113"><a href="#cb10-113" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Mu link function:  log</span></span>
+<span id="cb10-114"><a href="#cb10-114" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Mu Coefficients:</span></span>
+<span id="cb10-115"><a href="#cb10-115" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;             Estimate Std. Error t value Pr(&gt;|t|)    </span></span>
+<span id="cb10-116"><a href="#cb10-116" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; (Intercept) -4.87857    0.01489  -327.6   &lt;2e-16 ***</span></span>
+<span id="cb10-117"><a href="#cb10-117" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ---</span></span>
+<span id="cb10-118"><a href="#cb10-118" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></span>
+<span id="cb10-119"><a href="#cb10-119" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb10-120"><a href="#cb10-120" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ------------------------------------------------------------------</span></span>
+<span id="cb10-121"><a href="#cb10-121" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Sigma link function:  log</span></span>
+<span id="cb10-122"><a href="#cb10-122" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Sigma Coefficients:</span></span>
+<span id="cb10-123"><a href="#cb10-123" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;             Estimate Std. Error t value Pr(&gt;|t|)    </span></span>
+<span id="cb10-124"><a href="#cb10-124" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; (Intercept)   1.8206     0.1349    13.5   &lt;2e-16 ***</span></span>
+<span id="cb10-125"><a href="#cb10-125" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ---</span></span>
+<span id="cb10-126"><a href="#cb10-126" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></span>
+<span id="cb10-127"><a href="#cb10-127" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb10-128"><a href="#cb10-128" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ------------------------------------------------------------------</span></span>
+<span id="cb10-129"><a href="#cb10-129" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Nu link function:  log </span></span>
+<span id="cb10-130"><a href="#cb10-130" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Nu Coefficients:</span></span>
+<span id="cb10-131"><a href="#cb10-131" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;             Estimate Std. Error t value Pr(&gt;|t|)  </span></span>
+<span id="cb10-132"><a href="#cb10-132" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; (Intercept)  -0.2794     0.1640  -1.704     0.09 .</span></span>
+<span id="cb10-133"><a href="#cb10-133" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ---</span></span>
+<span id="cb10-134"><a href="#cb10-134" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></span>
+<span id="cb10-135"><a href="#cb10-135" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb10-136"><a href="#cb10-136" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ------------------------------------------------------------------</span></span>
+<span id="cb10-137"><a href="#cb10-137" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; No. of observations in the fit:  208 </span></span>
+<span id="cb10-138"><a href="#cb10-138" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Degrees of Freedom for the fit:  3</span></span>
+<span id="cb10-139"><a href="#cb10-139" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;       Residual Deg. of Freedom:  205 </span></span>
+<span id="cb10-140"><a href="#cb10-140" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                       at cycle:  93 </span></span>
+<span id="cb10-141"><a href="#cb10-141" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  </span></span>
+<span id="cb10-142"><a href="#cb10-142" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Global Deviance:     1977.99 </span></span>
+<span id="cb10-143"><a href="#cb10-143" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;             AIC:     1983.99 </span></span>
+<span id="cb10-144"><a href="#cb10-144" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;             SBC:     1994.003 </span></span>
+<span id="cb10-145"><a href="#cb10-145" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ******************************************************************</span></span></code></pre></div>
+<p>Then, we report the results and compare them with those in Cooray
+<span class="citation">(2006)</span></p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">Parameter</th>
+<th align="center">MLE <span class="citation">(Cooray 2006)</span></th>
+<th align="center">GAMLSS</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><span class="math inline">\(\mu\)</span></td>
+<td align="center">7.61e-03</td>
+<td align="center">7.61e-03</td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(\sigma\)</span></td>
+<td align="center">6.2278</td>
+<td align="center">6.1754</td>
+</tr>
+<tr class="odd">
+<td align="center"><span class="math inline">\(\nu\)</span></td>
+<td align="center">0.7495</td>
+<td align="center">0.7563</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="references" class="section level1 unnumbered">
+<h1 class="unnumbered">References</h1>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-Cooray2006" class="csl-entry">
+Cooray, Kahadawala. 2006. <span>“<span class="nocase">Generalization of
+the Weibull distribution: The odd Weibull family</span>.”</span>
+<em>Statistical Modelling</em> 6 (3): 265–77. <a href="https://doi.org/10.1191/1471082X06st116oa">https://doi.org/10.1191/1471082X06st116oa</a>.
+</div>
+<div id="ref-Cooray2015" class="csl-entry">
+———. 2015. <span>“<span class="nocase">A study of moments and likelihood
+estimators of the odd Weibull distribution</span>.”</span>
+<em>Statistical Methodology</em> 26 (September): 72–83. <a href="https://doi.org/10.1016/j.stamet.2015.03.003">https://doi.org/10.1016/j.stamet.2015.03.003</a>.
+</div>
+<div id="ref-Kimball1960" class="csl-entry">
+Kimball, A. W. 1960. <span>“<span class="nocase">Estimation of Mortality
+Intensities in Animal Experiments</span>.”</span> <em>Biometrics</em> 16
+(4): 505. <a href="https://doi.org/10.2307/2527758">https://doi.org/10.2307/2527758</a>.
+</div>
+<div id="ref-Wang2000" class="csl-entry">
+Wang, F. K. 2000. <span>“<span class="nocase">A new model with bath
+tub-shaped failure rate using an additive Burr XII
+distribution</span>.”</span> <em>Reliability Engineering and System
+Safety</em> 70 (3): 305–12. <a href="https://doi.org/10.1016/S0951-8320(00)00066-1">https://doi.org/10.1016/S0951-8320(00)00066-1</a>.
+</div>
+</div>
+</div>
+
+
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

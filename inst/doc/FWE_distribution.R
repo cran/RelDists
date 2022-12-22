@@ -1,0 +1,59 @@
+## ---- include = FALSE---------------------------------------------------------
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+
+## ----setup--------------------------------------------------------------------
+library(RelDists)
+
+## ----fig.height=5, fig.width=8, echo=FALSE------------------------------------
+old_par <- par(mfrow = c(1, 1)) # save previous graphical parameters
+
+paleta <- c("#00004A", "#00A4FF", "#F6F906", "#FF3300")
+par(mfrow=c(1, 2))
+
+# bathtub-like shape
+m <- 1/8
+s1 <- 3/8
+s2 <- 9/8
+s3 <- 27/8
+s4 <- 81/8
+
+curve(dFWE(x, mu=m, sigma=s1), from=0, to=15, ylim=c(0, 1), 
+      col=paleta[1], ylab="f(x)", las=1, lwd=2)
+curve(dFWE(x, mu=m, sigma=s2), col=paleta[2], add=T, lwd=2)
+curve(dFWE(x, mu=m, sigma=s3), col=paleta[3], add=T, lwd=2)
+curve(dFWE(x, mu=m, sigma=s4), col=paleta[4], add=T, lwd=2)
+
+cap1 <- as.expression(bquote(mu * ' = ' * .(m) * ', ' * sigma * ' = ' * .(s1)))
+cap2 <- as.expression(bquote(mu * ' = ' * .(m) * ', ' * sigma * ' = ' * .(s2)))
+cap3 <- as.expression(bquote(mu * ' = ' * .(m) * ', ' * sigma * ' = ' * .(s3)))
+cap4 <- as.expression(bquote(mu * ' = ' * .(m) * ', ' * sigma * ' = ' * .(s4)))
+
+legend('topright', legend=c(cap1, cap2, cap3, cap4), 
+       col=paleta, lty=c(1, 1, 1), bty="n", lwd=2)
+
+# shallower bathtup-like shape
+s <- 9/8
+m1 <- 1/8
+m2 <- 2/8
+m3 <- 3/8
+m4 <- 4/8
+
+curve(pFWE(x, mu=m1, sigma=s), from=0, to=10, ylim=c(0, 1), 
+      col=paleta[1], ylab="F(x)", las=1, lwd=2)
+curve(pFWE(x, mu=m2, sigma=s), col=paleta[2], add=T, lwd=2)
+curve(pFWE(x, mu=m3, sigma=s), col=paleta[3], add=T, lwd=2)
+curve(pFWE(x, mu=m4, sigma=s), col=paleta[4], add=T, lwd=2)
+
+cap1 <- as.expression(bquote(mu * ' = ' * .(m1) * ', ' * sigma * ' = ' * .(s)))
+cap2 <- as.expression(bquote(mu * ' = ' * .(m2) * ', ' * sigma * ' = ' * .(s)))
+cap3 <- as.expression(bquote(mu * ' = ' * .(m3) * ', ' * sigma * ' = ' * .(s)))
+cap4 <- as.expression(bquote(mu * ' = ' * .(m4) * ', ' * sigma * ' = ' * .(s)))
+
+legend('bottomright', legend=c(cap1, cap2, cap3, cap4), 
+       col=paleta, lty=c(1, 1, 1), bty="n", lwd=2)
+
+par(old_par) # restore previous graphical parameters
+
