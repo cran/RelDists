@@ -31,7 +31,8 @@ hEGG(x, mu, sigma, nu, tau)
 
 \item{log, log.p}{logical; if TRUE, probabilities p are given as log(p).}
 
-\item{lower.tail}{logical; if TRUE (default), probabilities are P[X <= x], otherwise, P[X > x].}
+\item{lower.tail}{logical; if TRUE (default), probabilities are 
+P[X <= x], otherwise, P[X > x].}
 
 \item{p}{vector of probabilities.}
 
@@ -53,7 +54,7 @@ Four-Parameter Exponentiated Generalized Gamma distribution with parameters \cod
 
 \eqn{f(x) = \frac{\nu \sigma}{\mu \Gamma(\tau)} \left(\frac{x}{\mu}\right)^{\sigma \tau -1} \exp\left\{ - \left( \frac{x}{\mu} \right)^\sigma \right\} \left\{ \gamma_1\left( \tau, \left( \frac{x}{\mu} \right)^\sigma \right) \right\}^{\nu-1} ,}
 
-for x > 0.
+for \eqn{x > 0}.
 }
 \examples{
 old_par <- par(mfrow = c(1, 1)) # save previous graphical parameters
@@ -89,9 +90,17 @@ curve(hEGG(x,  mu=0.1, sigma=0.8, nu=10, tau=1.5), from=0.0001, to=1.5,
 par(old_par) # restore previous graphical parameters
 }
 \references{
-\insertRef{almalki2014modifications}{RelDists}
+Almalki, S. J., & Nadarajah, S. (2014). Modifications of the 
+Weibull distribution: A review. Reliability Engineering & 
+System Safety, 124, 32-55.
 
-\insertRef{cordeiro2011}{RelDists}
+Cordeiro, G. M., Ortega, E. M., & Silva, G. O. (2011). 
+The exponentiated generalized gamma distribution with 
+application to lifetime data. Journal of statistical 
+computation and simulation, 81(7), 827-842.
+}
+\seealso{
+\link{EGG}
 }
 \author{
 Amylkar Urrea Montoya, \email{amylkar.urrea@udea.edu.co}

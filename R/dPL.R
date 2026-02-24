@@ -13,7 +13,10 @@
 #' @param mu parameter.
 #' @param sigma parameter.
 #' @param log,log.p	logical; if TRUE, probabilities p are given as log(p).	
-#' @param lower.tail logical; if TRUE (default), probabilities are P[X <= x], otherwise, P[X > x].
+#' @param lower.tail logical; if TRUE (default), probabilities are 
+#' P[X <= x], otherwise, P[X > x].
+#' 
+#' @seealso \link{PL}
 #' 
 #' @details 
 #' The Power Lindley Distribution with parameters \code{mu} 
@@ -21,7 +24,7 @@
 #' 
 #' \eqn{f(x) = \frac{\mu \sigma^2}{\sigma + 1} (1 + x^\mu) x ^ {\mu - 1} \exp({-\sigma x ^\mu}),}
 #' 
-#' for x > 0.
+#' for \eqn{x > 0}.
 #' 
 #' @return 
 #' \code{dPL} gives the density, \code{pPL} gives the distribution 
@@ -31,11 +34,14 @@
 #' @example examples/examples_dPL.R  
 #'
 #' @references
-#' \insertRef{almalki2014modifications}{RelDists}
+#' Almalki, S. J., & Nadarajah, S. (2014). Modifications of the 
+#' Weibull distribution: A review. Reliability Engineering & 
+#' System Safety, 124, 32-55.
 #' 
-#' \insertRef{Ghitanya2013}{RelDists}
-#'
-#' @importFrom Rdpack reprompt
+#' Ghitany, M. E., Al-Mutairi, D. K., Balakrishnan, N., & 
+#' Al-Enezi, L. J. (2013). Power Lindley distribution 
+#' and associated inference. Computational Statistics & Data 
+#' Analysis, 64, 20-33.
 #'
 #' @export
 dPL <- function(x, mu, sigma, log=FALSE){

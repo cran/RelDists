@@ -68,7 +68,9 @@ exp(coef(mod, what="nu"))
 exp(coef(mod, what="tau"))
 }
 \references{
-\insertRef{javed2018marshall}{RelDists}
+Javed, M., Nawaz, T., & Irfan, M. (2019). The Marshall-Olkin 
+kappa distribution: properties and applications. 
+Journal of King Saud University-Science, 31(4), 684-691.
 }
 \seealso{
 \link{dMOK}

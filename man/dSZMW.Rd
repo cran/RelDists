@@ -50,7 +50,7 @@ with parameters \code{mu}, \code{sigma} and \code{nu}.
 The Sarhan and Zaindins modified weibull with parameters \code{mu}, 
 \code{sigma} and \code{nu} has density given by
 
-\eqn{f(x)=(\mu + \sigma \nu x^(\nu - 1)) \exp(- \mu x - \sigma x^\nu)}
+\eqn{f(x)=(\mu + \sigma \nu x^{\nu - 1}) \exp(- \mu x - \sigma x^\nu)}
 
 for \eqn{x > 0}, \eqn{\mu > 0}, \eqn{\sigma > 0} and \eqn{\nu > 0}.
 }
@@ -86,9 +86,15 @@ curve(hSZMW(x, mu = 2, sigma = 1.5, nu = 0.2), from = 0, to = 3, ylim = c(0, 8),
 par(old_par) # restore previous graphical parameters
 }
 \references{
-\insertRef{almalki2014modifications}{RelDists}
+Almalki, S. J., & Nadarajah, S. (2014). Modifications of the 
+Weibull distribution: A review. Reliability Engineering & 
+System Safety, 124, 32-55.
 
-\insertRef{sarhan2009modified}{RelDists}
+Sarhan, A. M., & Zaindin, M. (2009). 
+Modified Weibull distribution. APPS. Applied Sciences, 11, 123-136.
+}
+\seealso{
+\link{SZMW}
 }
 \author{
 Johan David Marin Benjumea, \email{johand.marin@udea.edu.co}

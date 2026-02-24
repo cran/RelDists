@@ -27,7 +27,8 @@ hEEG(x, mu, sigma)
 
 \item{log, log.p}{logical; if TRUE, probabilities p are given as log(p).}
 
-\item{lower.tail}{logical; if TRUE (default), probabilities are P[X <= x], otherwise, P[X > x].}
+\item{lower.tail}{logical; if TRUE (default), probabilities 
+are P[X <= x], otherwise, P[X > x].}
 
 \item{p}{vector of probabilities.}
 
@@ -87,9 +88,16 @@ curve(hEEG(x, mu = 1, sigma =0.5), from = 0, to = 2,
 par(old_par) # restore previous graphical parameters
 }
 \references{
-\insertRef{almalki2014modifications}{RelDists}
+Almalki, S. J., & Nadarajah, S. (2014). Modifications of the 
+Weibull distribution: A review. Reliability Engineering & 
+System Safety, 124, 32-55.
 
-\insertRef{adamidis2005extension}{RelDists}
+Adamidis, K., Dimitrakopoulou, T., & Loukas, S. (2005). 
+On an extension of the exponential-geometric distribution. 
+Statistics & probability letters, 73(3), 259-269.
+}
+\seealso{
+\link{EEG}
 }
 \author{
 Johan David Marin Benjumea, \email{johand.marin@udea.edu.co}

@@ -31,7 +31,8 @@ hBGE(x, mu, sigma, nu, tau)
 
 \item{log, log.p}{logical; if TRUE, probabilities p are given as log(p).}
 
-\item{lower.tail}{logical; if TRUE (default), probabilities are P[X <= x], otherwise, P[X > x].}
+\item{lower.tail}{logical; if TRUE (default), probabilities 
+are P[X <= x], otherwise, P[X > x].}
 
 \item{p}{vector of probabilities.}
 
@@ -90,9 +91,16 @@ curve(hBGE(x, mu = 0.9, sigma =0.5, nu=1, tau=1), from = 0, to = 2,
 par(old_par) # restore previous graphical parameters
 }
 \references{
-\insertRef{almalki2014modifications}{RelDists}
+Almalki, S. J., & Nadarajah, S. (2014). Modifications of the 
+Weibull distribution: A review. Reliability Engineering & 
+System Safety, 124, 32-55.
 
-\insertRef{barreto2010beta}{RelDists}
+Barreto-Souza, W., Santos, A. H., & Cordeiro, G. M. (2010). 
+The beta generalized exponential distribution. Journal of 
+statistical Computation and Simulation, 80(2), 159-172.
+}
+\seealso{
+\link{BGE}
 }
 \author{
 Johan David Marin Benjumea, \email{johand.marin@udea.edu.co}

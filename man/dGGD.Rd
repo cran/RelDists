@@ -27,7 +27,8 @@ hGGD(x, mu, sigma, nu)
 
 \item{log, log.p}{logical; if TRUE, probabilities p are given as log(p).}
 
-\item{lower.tail}{logical; if TRUE (default), probabilities are P[X <= x], otherwise, P[X > x].}
+\item{lower.tail}{logical; if TRUE (default), probabilities are 
+P[X <= x], otherwise, P[X > x].}
 
 \item{p}{vector of probabilities.}
 
@@ -87,7 +88,12 @@ curve(hGGD(x, mu=1, sigma=0.3, nu=1.5), from = 0, to = 3, col = "red",
 par(old_par) # restore previous graphical parameters
 }
 \references{
-\insertRef{el2013generalized}{RelDists}
+El-Gohary, A., Alshamrani, A., & Al-Otaibi, A. N. (2013). 
+The generalized Gompertz distribution. Applied mathematical 
+modelling, 37(1-2), 13-24.
+}
+\seealso{
+\link{GGD}
 }
 \author{
 Johan David Marin Benjumea, \email{johand.marin@udea.edu.co}

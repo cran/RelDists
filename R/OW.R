@@ -19,14 +19,15 @@
 #'      e^{(\mu t)^\sigma} \left(e^{(\mu t)^{\sigma}}-1\right)^{\nu-1}
 #'      \left[ 1 + \left(e^{(\mu t)^{\sigma}}-1\right)^\nu \right]^{-2}}
 #'
-#' for x > 0.
+#' for \eqn{x>0}.
 #' 
 #' @returns Returns a gamlss.family object which can be used to fit a OW distribution in the \code{gamlss()} function.
 #' 
 #' @example examples/examples_OW.R
 #' 
 #' @references
-#' \insertRef{Cooray2006}{RelDists}
+#' Cooray, K. (2006). Generalization of the Weibull distribution: 
+#' the odd Weibull family. Statistical Modelling, 6(3), 265-277.
 #' 
 #' @importFrom gamlss.dist checklink
 #' @importFrom gamlss rqres.plot

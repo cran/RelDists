@@ -25,11 +25,14 @@
 #' @example examples/examples_BGE.R 
 #'
 #' @references
-#'\insertRef{almalki2014modifications}{RelDists}
+#' Almalki, S. J. (2018). A reduced new modified Weibull distribution. 
+#' Communications in Statistics-Theory and Methods, 47(10), 2297-2313.
 #'
-#'\insertRef{barreto2010beta}{RelDists}
+#' Barreto-Souza, W., Santos, A. H., & Cordeiro, G. M. (2010). 
+#' The beta generalized exponential distribution. Journal of 
+#' statistical Computation and Simulation, 80(2), 159-172.
 #' 
-#'@importFrom gamlss.dist checklink
+#' @importFrom gamlss.dist checklink
 #' @importFrom gamlss rqres.plot
 #' @export
 BGE <- function (mu.link="log", sigma.link="log", nu.link="log", tau.link="log"){

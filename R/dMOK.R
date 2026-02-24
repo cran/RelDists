@@ -15,7 +15,10 @@
 #' @param nu parameter.
 #' @param tau parameter.
 #' @param log,log.p	logical; if TRUE, probabilities p are given as log(p).	
-#' @param lower.tail logical; if TRUE (default), probabilities are P[X <= x], otherwise, P[X > x].
+#' @param lower.tail logical; if TRUE (default), probabilities are 
+#' P[X <= x], otherwise, P[X > x].
+#' 
+#' @seealso \link{MOK}
 #' 
 #' @details
 #' The Marshall-Olkin Kappa distribution with parameters \code{mu},
@@ -23,7 +26,7 @@
 #' 
 #' \eqn{f(x)=\frac{\tau\frac{\mu\nu}{\sigma}\left(\frac{x}{\sigma}\right)^{\nu-1} \left(\mu+\left(\frac{x}{\sigma}\right)^{\mu\nu}\right)^{-\frac{\mu+1}{\mu}}}{\left[\tau+(1-\tau)\left(\frac{\left(\frac{x}{\sigma}\right)^{\mu\nu}}{\mu+\left(\frac{x}{\sigma}\right)^{\mu\nu}}\right)^{\frac{1}{\mu}}\right]^2}}
 #' 
-#' for x > 0.
+#' for \eqn{x > 0}.
 #' 
 #' @return
 #' \code{dMOK} gives the density, \code{pMOK} gives the distribution function,
@@ -32,9 +35,10 @@
 #' 
 #' @example examples/examples_dMOK.R
 #' 
-#'
 #' @references
-#'\insertRef{javed2018marshall}{RelDists}
+#' Javed, M., Nawaz, T., & Irfan, M. (2019). The Marshall-Olkin 
+#' kappa distribution: properties and applications. 
+#' Journal of King Saud University-Science, 31(4), 684-691.
 #'
 #' @export
 dMOK <- function(x, mu, sigma, nu, tau, log = FALSE){

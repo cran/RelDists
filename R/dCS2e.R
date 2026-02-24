@@ -14,7 +14,10 @@
 #' @param sigma parameter.
 #' @param nu parameter.
 #' @param log,log.p	logical; if TRUE, probabilities p are given as log(p).	
-#' @param lower.tail logical; if TRUE (default), probabilities are P[X <= x], otherwise, P[X > x].
+#' @param lower.tail logical; if TRUE (default), probabilities are 
+#' P[X <= x], otherwise, P[X > x].
+#' 
+#' @seealso \link{CS2e}
 #' 
 #' @details 
 #' The Cosine Sine Exponential Distribution with parameters \code{mu}, 
@@ -32,7 +35,10 @@
 #' @example examples/examples_dCS2e.R
 #'       
 #' @references
-#'\insertRef{chesneau2018new}{RelDists}
+#' Chesneau, C., Bakouch, H. S., & Hussain, T. (2019). A new class 
+#' of probability distributions via cosine and sine functions 
+#' with applications. Communications in Statistics-Simulation 
+#' and Computation, 48(8), 2287-2300.
 #'
 #' @export
 dCS2e <- function(x, mu, sigma, nu, log=FALSE){

@@ -16,18 +16,20 @@
 #' 
 #' \eqn{f(y)=(1/\sigma) e^{((y - \mu)/\sigma)} exp\{-e^{((y - \mu)/\sigma)}\},}
 #' 
-#' for - \code{infty} < y < \code{infty}.
+#' for \eqn{-\infty < y < \infty}.
 #' 
 #' @returns Returns a gamlss.family object which can be used to fit a LW distribution in the \code{gamlss()} function.
 #' 
 #' @example examples/examples_LW.R 
 #' 
 #' @references
-#' \insertRef{almalki2014modifications}{RelDists}
+#' Almalki, S. J., & Nadarajah, S. (2014). Modifications of the 
+#' Weibull distribution: A review. Reliability Engineering & 
+#' System Safety, 124, 32-55.
 #' 
-#' \insertRef{Gumbel1958}{RelDists}
+#' Gumbel, E. J. (1958). Statistics of extremes. 
+#' Columbia university press.
 #'
-#' @importFrom Rdpack reprompt
 #' @importFrom gamlss.dist checklink
 #' @importFrom gamlss rqres.plot
 #' @export

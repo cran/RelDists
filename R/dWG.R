@@ -16,6 +16,8 @@
 #' @param log,log.p	logical; if TRUE, probabilities p are given as log(p).	
 #' @param lower.tail logical; if TRUE (default), probabilities are 
 #' P[X <= x], otherwise, P[X > x].
+#' 
+#' @seealso \link{WG}
 #'  
 #' @details 
 #' The Weibull geometric distribution with parameters \code{mu},
@@ -34,10 +36,12 @@
 #' @example examples/examples_dWG.R
 #' 
 #' @references
-#'\insertRef{barreto2011weibull}{RelDists}
+#' Barreto-Souza, W., de Morais, A. L., & Cordeiro, G. M. (2011). 
+#' The Weibull-geometric distribution. Journal of Statistical 
+#' Computation and Simulation, 81(5), 645-657.
 #'
 #' @export
-dWG<-function(x, mu, sigma, nu, log=FALSE){
+dWG <- function(x, mu, sigma, nu, log=FALSE){
   if (any(x < 0)) 
     stop(paste("x must be positive", "\n", ""))
   if (any(sigma <= 0 )) 
@@ -120,7 +124,7 @@ rWG <- function(n, mu, sigma, nu){
 }
 #' @export
 #' @rdname dWG
-hWG<-function(x, mu, sigma, nu){
+hWG <- function(x, mu, sigma, nu){
   if (any(x < 0)) 
     stop(paste("x must be positive", "\n", ""))
   if (any(sigma <= 0 )) 

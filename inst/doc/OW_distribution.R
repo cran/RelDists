@@ -1,4 +1,4 @@
-## ---- include = FALSE---------------------------------------------------------
+## ----include = FALSE----------------------------------------------------------
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
@@ -9,7 +9,7 @@ library(RelDists)
 library(EstimationTools)
 library(gamlss)
 
-## ---- echo=FALSE, message=F---------------------------------------------------
+## ----echo=FALSE, message=F----------------------------------------------------
 old_par <- par(mfrow = c(1, 1)) # save previous graphical parameters
 
 ## 5^(1/3) = 1.71; 2^(1/3) = 1.26; 0.5^(1/2) = 0.71
@@ -53,7 +53,7 @@ legend("bottomright", legend=c(expression(paste(mu,
 
 par(old_par) # restore previous graphical parameters
 
-## ---- echo=FALSE--------------------------------------------------------------
+## ----echo=FALSE---------------------------------------------------------------
 old_par <- par(mfrow = c(1, 1)) # save previous graphical parameters
 
 par(mgp=c(3,0.7,0))
@@ -81,7 +81,7 @@ legend("topright", legend=c(expression(paste(mu,
 
 par(old_par) # restore previous graphical parameters
 
-## ---- echo=FALSE, message=FALSE, warning=FALSE, fig.height=6------------------
+## ----echo=FALSE, message=FALSE, warning=FALSE, fig.height=6-------------------
 old_par <- par(mfrow = c(1, 1)) # save previous graphical parameters
 
 hyp <- function(x) 1/x
@@ -157,7 +157,7 @@ par(old_par) # restore previous graphical parameters
 myvalues <- list(sigma = "all(sigma > 1)",
                  nu = "all(nu < 1/sigma)")
 
-## ---- message=FALSE, warning=FALSE--------------------------------------------
+## ----message=FALSE, warning=FALSE---------------------------------------------
 # gamlss set up
 con.out <-gamlss.control(n.cyc = 300, trace=TRUE)
 myOW <- myOW_region(family = OW(sigma.link='identity'),
@@ -168,7 +168,7 @@ param_ee <- gamlss(equipment ~ 1, sigma.fo = ~ 1, nu.fo = ~ 1,
                    control = con.out, family = myOW)
 summary(param_ee)
 
-## ---- echo=FALSE, include=FALSE-----------------------------------------------
+## ----echo=FALSE, include=FALSE------------------------------------------------
 mu1 <- exp(coef(param_ee, what = 'mu'))
 sigma1 <- coef(param_ee, what = 'sigma')
 nu1 <- exp(coef(param_ee, what = 'nu'))
@@ -193,7 +193,7 @@ legend.HazardShape(x = 1.07, y = 1.04, xpd = TRUE)
 
 par(old_par) # restore previous graphical parameters
 
-## ---- message=FALSE, warning=FALSE, message=FALSE-----------------------------
+## ----message=FALSE, warning=FALSE, message=FALSE------------------------------
 # gamlss set up
 myOW <- myOW_region(initVal = init_vals)
 
@@ -205,7 +205,7 @@ param_mm <- gamlss(mice ~ 1, sigma.fo = ~ 1, nu.fo = ~ 1,
                    family = myOW)
 summary(param_mm)
 
-## ---- echo=FALSE, include=FALSE-----------------------------------------------
+## ----echo=FALSE, include=FALSE------------------------------------------------
 mu2 <- exp(coef(param_mm, what = 'mu'))
 sigma2 <- coef(param_mm, what = 'sigma')
 nu2 <- exp(coef(param_mm, what = 'nu'))

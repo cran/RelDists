@@ -23,7 +23,7 @@ and \code{sigma} has density given by
 
 \eqn{f(y)=(1/\sigma) e^{((y - \mu)/\sigma)} exp\{-e^{((y - \mu)/\sigma)}\},}
 
-for - \code{infty} < y < \code{infty}.
+for \eqn{-\infty < y < \infty}.
 }
 \examples{
 # Example 1
@@ -58,9 +58,12 @@ coef(mod, what="mu")
 coef(mod, what="sigma")
 }
 \references{
-\insertRef{almalki2014modifications}{RelDists}
+Almalki, S. J., & Nadarajah, S. (2014). Modifications of the 
+Weibull distribution: A review. Reliability Engineering & 
+System Safety, 124, 32-55.
 
-\insertRef{Gumbel1958}{RelDists}
+Gumbel, E. J. (1958). Statistics of extremes. 
+Columbia university press.
 }
 \seealso{
 \link{dLW}

@@ -68,7 +68,10 @@ coef(mod, what="sigma")
 exp(coef(mod, what="nu"))
 }
 \references{
-\insertRef{subhradev2018}{RelDists}
+Sen, S., Korkmaz, M. Ç., & Yousof, H. M. (2018). 
+The quasi XGamma-Poisson distribution: properties and
+application. Istatistik Journal of The Turkish Statistical 
+Association, 11(3), 65-76.
 }
 \seealso{
 \link{dQXGP}

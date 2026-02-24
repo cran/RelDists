@@ -13,7 +13,10 @@
 #' @param mu parameter.
 #' @param sigma parameter.
 #' @param log,log.p	logical; if TRUE, probabilities p are given as log(p).	
-#' @param lower.tail logical; if TRUE (default), probabilities are P[X <= x], otherwise, P[X > x].
+#' @param lower.tail logical; if TRUE (default), probabilities are 
+#' P[X <= x], otherwise, P[X > x].
+#' 
+#' @seealso \link{LW}
 #' 
 #' @details 
 #' The Log-Weibull Distribution with parameters \code{mu} 
@@ -21,7 +24,7 @@
 #' 
 #' \eqn{f(y)=(1/\sigma) e^{((y - \mu)/\sigma)} exp\{-e^{((y - \mu)/\sigma)}\},}
 #' 
-#' for - \code{infty} < y < \code{infty}. 
+#' for \eqn{-\infty < y < \infty}. 
 #' 
 #' @return 
 #' \code{dLW} gives the density, \code{pLW} gives the distribution 
@@ -31,11 +34,12 @@
 #' @example examples/examples_dLW.R  
 #'
 #' @references
-#' \insertRef{almalki2014modifications}{RelDists}
+#' Almalki, S. J., & Nadarajah, S. (2014). Modifications of the 
+#' Weibull distribution: A review. Reliability Engineering & 
+#' System Safety, 124, 32-55.
 #' 
-#' \insertRef{Gumbel1958}{RelDists}
-#'
-#' @importFrom Rdpack reprompt
+#' Gumbel, E. J. (1958). Statistics of extremes. 
+#' Columbia university press.
 #'
 #' @export
 dLW <- function(x, mu, sigma, log=FALSE){

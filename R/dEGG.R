@@ -15,7 +15,10 @@
 #' @param nu parameter.
 #' @param tau parameter.
 #' @param log,log.p	logical; if TRUE, probabilities p are given as log(p).	
-#' @param lower.tail logical; if TRUE (default), probabilities are P[X <= x], otherwise, P[X > x].
+#' @param lower.tail logical; if TRUE (default), probabilities are 
+#' P[X <= x], otherwise, P[X > x].
+#' 
+#' @seealso \link{EGG}
 #' 
 #' @details 
 #' Four-Parameter Exponentiated Generalized Gamma distribution with parameters \code{mu}, 
@@ -23,7 +26,7 @@
 #' 
 #' \eqn{f(x) = \frac{\nu \sigma}{\mu \Gamma(\tau)} \left(\frac{x}{\mu}\right)^{\sigma \tau -1} \exp\left\{ - \left( \frac{x}{\mu} \right)^\sigma \right\} \left\{ \gamma_1\left( \tau, \left( \frac{x}{\mu} \right)^\sigma \right) \right\}^{\nu-1} ,}
 #' 
-#' for x > 0. 
+#' for \eqn{x > 0}. 
 #' 
 #' @return 
 #' \code{dEGG} gives the density, \code{pEGG} gives the distribution 
@@ -33,11 +36,14 @@
 #' @example examples/examples_dEGG.R  
 #'
 #' @references
-#' \insertRef{almalki2014modifications}{RelDists}
+#' Almalki, S. J., & Nadarajah, S. (2014). Modifications of the 
+#' Weibull distribution: A review. Reliability Engineering & 
+#' System Safety, 124, 32-55.
 #'
-#' \insertRef{cordeiro2011}{RelDists}
-#'
-#' @importFrom Rdpack reprompt
+#' Cordeiro, G. M., Ortega, E. M., & Silva, G. O. (2011). 
+#' The exponentiated generalized gamma distribution with 
+#' application to lifetime data. Journal of statistical 
+#' computation and simulation, 81(7), 827-842.
 #'
 #' @export
 dEGG <- function(x, mu, sigma,

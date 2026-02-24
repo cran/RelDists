@@ -27,7 +27,8 @@ hLW(x, mu, sigma)
 
 \item{log, log.p}{logical; if TRUE, probabilities p are given as log(p).}
 
-\item{lower.tail}{logical; if TRUE (default), probabilities are P[X <= x], otherwise, P[X > x].}
+\item{lower.tail}{logical; if TRUE (default), probabilities are 
+P[X <= x], otherwise, P[X > x].}
 
 \item{p}{vector of probabilities.}
 
@@ -49,7 +50,7 @@ and \code{sigma} has density given by
 
 \eqn{f(y)=(1/\sigma) e^{((y - \mu)/\sigma)} exp\{-e^{((y - \mu)/\sigma)}\},}
 
-for - \code{infty} < y < \code{infty}.
+for \eqn{-\infty < y < \infty}.
 }
 \examples{
 old_par <- par(mfrow = c(1, 1)) # save previous graphical parameters
@@ -84,9 +85,15 @@ curve(hLW(x, mu=0, sigma=1.5), from=-8, to=7,
 par(old_par) # restore previous graphical parameters
 }
 \references{
-\insertRef{almalki2014modifications}{RelDists}
+Almalki, S. J., & Nadarajah, S. (2014). Modifications of the 
+Weibull distribution: A review. Reliability Engineering & 
+System Safety, 124, 32-55.
 
-\insertRef{Gumbel1958}{RelDists}
+Gumbel, E. J. (1958). Statistics of extremes. 
+Columbia university press.
+}
+\seealso{
+\link{LW}
 }
 \author{
 Amylkar Urrea Montoya, \email{amylkar.urrea@udea.edu.co}

@@ -27,7 +27,8 @@ hRW(x, mu, sigma)
 
 \item{log, log.p}{logical; if TRUE, probabilities p are given as log(p).}
 
-\item{lower.tail}{logical; if TRUE (default), probabilities are P[X <= x], otherwise, P[X > x].}
+\item{lower.tail}{logical; if TRUE (default), probabilities are 
+P[X <= x], otherwise, P[X > x].}
 
 \item{p}{vector of probabilities.}
 
@@ -47,9 +48,9 @@ with parameters \code{mu} and \code{sigma}.
 The Reflected Weibull Distribution with parameters \code{mu} 
 and \code{sigma} has density given by
 
-\eqn{f(y) = \mu\sigma (-y) ^{\sigma - 1} e ^ {-\mu(-y)^\sigma},}
+\eqn{f(x) = \mu \sigma (-x) ^{\sigma - 1} e^{-\mu(-x)^\sigma},}
 
-for y < 0.
+for \eqn{x < 0}.
 }
 \examples{
 old_par <- par(mfrow = c(1, 1)) # save previous graphical parameters
@@ -84,9 +85,15 @@ curve(hRW(x, mu=1, sigma=1), from=-0.3, to=-0.01,
 par(old_par) # restore previous graphical parameters
 }
 \references{
-\insertRef{almalki2014modifications}{RelDists}
+Almalki, S. J., & Nadarajah, S. (2014). Modifications of the 
+Weibull distribution: A review. Reliability Engineering & 
+System Safety, 124, 32-55.
 
-\insertRef{Clifford1973}{RelDists}
+Cohen, A. C. (1973). The reflected Weibull distribution. 
+Technometrics, 15(4), 867-873.
+}
+\seealso{
+\link{RW}
 }
 \author{
 Amylkar Urrea Montoya, \email{amylkar.urrea@udea.edu.co}

@@ -29,7 +29,8 @@ hGammaW(x, mu, sigma, nu)
 
 \item{log, log.p}{logical; if TRUE, probabilities p are given as log(p).}
 
-\item{lower.tail}{logical; if TRUE (default), probabilities are P[X <= x], otherwise, P[X > x].}
+\item{lower.tail}{logical; if TRUE (default), probabilities are 
+P[X <= x], otherwise, P[X > x].}
 
 \item{p}{vector of probabilities.}
 
@@ -88,9 +89,15 @@ ylim = c(0, 1), col = "red", ylab = "Hazard function", las = 1)
 par(old_par) # restore previous graphical parameters
 }
 \references{
-\insertRef{almalki2014modifications}{RelDists}
+Almalki, S. J., & Nadarajah, S. (2014). Modifications of the 
+Weibull distribution: A review. Reliability Engineering & 
+System Safety, 124, 32-55.
 
-\insertRef{stacy1962generalization}{RelDists}
+Stacy, E. W. (1962). A generalization of the gamma 
+distribution. The Annals of mathematical statistics, 1187-1192.
+}
+\seealso{
+\link{GammaW}
 }
 \author{
 Johan David Marin Benjumea, \email{johand.marin@udea.edu.co}

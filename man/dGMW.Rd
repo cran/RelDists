@@ -56,7 +56,7 @@ The generalized modified weibull with parameters \code{mu},
 \eqn{f(x)= \mu \sigma x^{\nu - 1}(\nu + \tau x) \exp(\tau x - \mu x^{\nu} e^{\tau x})
 [1 - \exp(- \mu x^{\nu} e^{\tau x})]^{\sigma-1},}
 
-for x>0.
+for \eqn{x > 0}.
 }
 \examples{
 old_par <- par(mfrow = c(1, 1)) # save previous graphical parameters
@@ -89,4 +89,7 @@ curve(hGMW(x, mu=2, sigma=0.5, nu=2, tau=1.5), from=0, to=1, ylim=c(0, 16),
       col="red", ylab="Hazard function", las=1)
 
 par(old_par) # restore previous graphical parameters
+}
+\seealso{
+\link{GMW}
 }

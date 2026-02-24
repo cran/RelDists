@@ -15,7 +15,6 @@ GGD(mu.link = "log", sigma.link = "log", nu.link = "log")
 }
 \value{
 Returns a gamlss.family object which can be used to fit a GGD distribution in the \code{gamlss()} function.
-.
 }
 \description{
 The Generalized Gompertz  family
@@ -64,7 +63,9 @@ coef(mod, what="sigma")
 exp(coef(mod, what="nu"))
 }
 \references{
-\insertRef{el2013generalized}{RelDists}
+#' El-Gohary, A., Alshamrani, A., & Al-Otaibi, A. N. (2013). 
+The generalized Gompertz distribution. Applied mathematical 
+modelling, 37(1-2), 13-24.
 }
 \seealso{
 \link{dGGD}

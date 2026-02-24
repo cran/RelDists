@@ -15,7 +15,7 @@
 #' The Sarhan and Zaindin's Modified Weibull distribution with parameters \code{mu}, 
 #' \code{sigma} and \code{nu} has density given by
 #' 
-#' \eqn{f(x)=(\mu + \sigma \nu x^(\nu - 1)) \exp(- \mu x - \sigma x^\nu),}
+#' \eqn{f(x)=(\mu + \sigma \nu x^{\nu - 1}) \exp(- \mu x - \sigma x^\nu),}
 #' 
 #' for \eqn{x > 0}, \eqn{\mu > 0}, \eqn{\sigma > 0} and \eqn{\nu > 0}. 
 #' 
@@ -24,9 +24,12 @@
 #' @example examples/examples_SZMW.R
 #' 
 #' @references
-#'\insertRef{almalki2014modifications}{RelDists}
+#' Almalki, S. J., & Nadarajah, S. (2014). Modifications of the 
+#' Weibull distribution: A review. Reliability Engineering & 
+#' System Safety, 124, 32-55.
 #'
-#'\insertRef{sarhan2009modified}{RelDists}
+#' Sarhan, A. M., & Zaindin, M. (2009). 
+#' Modified Weibull distribution. APPS. Applied Sciences, 11, 123-136.
 #' 
 #' @importFrom gamlss.dist checklink
 #' @importFrom gamlss rqres.plot

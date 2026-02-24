@@ -15,7 +15,10 @@
 #' @param nu parameter.
 #' @param tau parameter.
 #' @param log,log.p	logical; if TRUE, probabilities p are given as log(p).	
-#' @param lower.tail logical; if TRUE (default), probabilities are P[X <= x], otherwise, P[X > x].
+#' @param lower.tail logical; if TRUE (default), probabilities 
+#' are P[X <= x], otherwise, P[X > x].
+#' 
+#' @seealso \link{BGE}
 #' 
 #' @details 
 #' The Beta Generalized Exponentiated  Distribution with parameters \code{mu}, 
@@ -33,9 +36,13 @@
 #' @example examples/examples_dBGE.R    
 #' 
 #' @references
-#'\insertRef{almalki2014modifications}{RelDists}
+#' Almalki, S. J., & Nadarajah, S. (2014). Modifications of the 
+#' Weibull distribution: A review. Reliability Engineering & 
+#' System Safety, 124, 32-55.
 #'
-#'\insertRef{barreto2010beta}{RelDists}
+#' Barreto-Souza, W., Santos, A. H., & Cordeiro, G. M. (2010). 
+#' The beta generalized exponential distribution. Journal of 
+#' statistical Computation and Simulation, 80(2), 159-172.
 #' 
 #' @export
 dBGE <- function(x, mu, sigma, nu, tau, log=FALSE){

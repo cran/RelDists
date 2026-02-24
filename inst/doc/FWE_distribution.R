@@ -1,4 +1,4 @@
-## ---- include = FALSE---------------------------------------------------------
+## ----include = FALSE----------------------------------------------------------
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
@@ -8,8 +8,6 @@ knitr::opts_chunk$set(
 library(RelDists)
 
 ## ----fig.height=5, fig.width=8, echo=FALSE------------------------------------
-old_par <- par(mfrow = c(1, 1)) # save previous graphical parameters
-
 paleta <- c("#00004A", "#00A4FF", "#F6F906", "#FF3300")
 par(mfrow=c(1, 2))
 
@@ -54,6 +52,4 @@ cap4 <- as.expression(bquote(mu * ' = ' * .(m4) * ', ' * sigma * ' = ' * .(s)))
 
 legend('bottomright', legend=c(cap1, cap2, cap3, cap4), 
        col=paleta, lty=c(1, 1, 1), bty="n", lwd=2)
-
-par(old_par) # restore previous graphical parameters
 

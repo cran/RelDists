@@ -53,9 +53,9 @@ coef(mod, what='mu')
 
 }
 \references{
-\insertRef{lindley1958fiducial}{RelDists}
-
-\insertRef{lindley1965introduction}{RelDists}
+Lindley, D. V. (1958). Fiducial distributions and Bayes' theorem. 
+Journal of the Royal Statistical Society. 
+Series B (Methodological), 102-107.
 }
 \author{
 Freddy Hernandez \email{fhernanb@unal.edu.co}

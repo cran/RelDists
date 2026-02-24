@@ -29,7 +29,8 @@ hMOEW(x, mu, sigma, nu)
 
 \item{log, log.p}{logical; if TRUE, probabilities p are given as log(p).}
 
-\item{lower.tail}{logical; if TRUE (default), probabilities are P[X <= x], otherwise, P[X > x].}
+\item{lower.tail}{logical; if TRUE (default), probabilities are 
+P[X <= x], otherwise, P[X > x].}
 
 \item{p}{vector of probabilities.}
 
@@ -51,7 +52,7 @@ The Marshall-Olkin Extended Weibull distribution \code{mu},
 
 \eqn{f(x) = \frac{\mu \sigma \nu (\nu x)^{\sigma - 1} exp\{{-(\nu x )^{\sigma}}\}}{\{1-(1-\mu) exp\{{-(\nu x )^{\sigma}}\} \}^{2}},}
 
-for x > 0.
+for \eqn{x > 0}.
 }
 \examples{
 old_par <- par(mfrow = c(1, 1)) # save previous graphical parameters
@@ -87,9 +88,16 @@ curve(hMOEW(x, mu=0.5, sigma=0.7, nu=1), from=0.001, to=3,
 par(old_par) # restore previous graphical parameters
 }
 \references{
-\insertRef{almalki2014modifications}{RelDists}
+Almalki, S. J., & Nadarajah, S. (2014). Modifications of the 
+Weibull distribution: A review. Reliability Engineering & 
+System Safety, 124, 32-55.
 
-\insertRef{ghitany2005}{RelDists}
+Ghitany, M. E., Al-Hussaini, E. K., & Al-Jarallah, R. A. (2005). 
+Marshall–Olkin extended Weibull distribution and its application 
+to censored data. Journal of Applied Statistics, 32(10), 1025-1034.
+}
+\seealso{
+\link{MOEW}
 }
 \author{
 Amylkar Urrea Montoya, \email{amylkar.urrea@udea.edu.co}

@@ -14,7 +14,10 @@
 #' @param sigma parameter.
 #' @param nu parameter.
 #' @param log,log.p	logical; if TRUE, probabilities p are given as log(p).	
-#' @param lower.tail logical; if TRUE (default), probabilities are P[X <= x], otherwise, P[X > x].
+#' @param lower.tail logical; if TRUE (default), probabilities are 
+#' P[X <= x], otherwise, P[X > x].
+#' 
+#' @seealso \link{MOEIW}
 #' 
 #' @details 
 #' The Marshall-Olkin Extended Inverse Weibull distribution \code{mu}, 
@@ -22,7 +25,7 @@
 #' 
 #' \eqn{f(x) = \frac{\mu \sigma \nu x^{-(\sigma + 1)} exp\{{-\mu x^{-\sigma}}\}}{\{\nu -(\nu-1) exp\{{-\mu x ^{-\sigma}}\} \}^{2}},}
 #' 
-#' for x > 0. 
+#' for \eqn{x > 0}. 
 #' 
 #' @return 
 #' \code{dMOEIW} gives the density, \code{pMOEIW} gives the distribution 
@@ -32,9 +35,9 @@
 #' @example examples/examples_dMOEIW.R  
 #'
 #' @references
-#' \insertRef{okasha2017}{RelDists}
-#'
-#' @importFrom Rdpack reprompt
+#' Okasha, H. M., El-Baz, A. H., Tarabia, A. M. K., & Basheer, A. M. (2017). 
+#' Extended inverse Weibull distribution with reliability application. 
+#' Journal of the Egyptian Mathematical Society, 25(3), 343-349.
 #'
 #' @export
 dMOEIW <- function(x, mu, sigma, nu, log=FALSE){

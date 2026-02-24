@@ -63,9 +63,12 @@ coef(mod, what="sigma")
 coef(mod, what='nu')
 }
 \references{
-\insertRef{almalki2014modifications}{RelDists}
+Almalki, S. J., & Nadarajah, S. (2014). Modifications of the 
+Weibull distribution: A review. Reliability Engineering & 
+System Safety, 124, 32-55.
 
-\insertRef{stacy1962generalization}{RelDists}
+Stacy, E. W. (1962). A generalization of the gamma 
+distribution. The Annals of mathematical statistics, 1187-1192.
 }
 \seealso{
 \link{dGammaW}

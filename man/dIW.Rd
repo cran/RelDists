@@ -27,7 +27,8 @@ hIW(x, mu, sigma)
 
 \item{log, log.p}{logical; if TRUE, probabilities p are given as log(p).}
 
-\item{lower.tail}{logical; if TRUE (default), probabilities are P[X <= x], otherwise, P[X > x].}
+\item{lower.tail}{logical; if TRUE (default), probabilities are 
+P[X <= x], otherwise, P[X > x].}
 
 \item{p}{vector of probabilities.}
 
@@ -84,9 +85,16 @@ curve(hIW(x, mu=5, sigma=2.5), from=0, to=15, ylim=c(0, 0.9),
 par(old_par) # restore previous graphical parameters
 }
 \references{
-\insertRef{almalki2014modifications}{RelDists}
+Almalki, S. J., & Nadarajah, S. (2014). Modifications of the 
+Weibull distribution: A review. Reliability Engineering & 
+System Safety, 124, 32-55.
 
-\insertRef{drapella1993complementary}{RelDists}
+Drapella, A. (1993). The complementary Weibull distribution: 
+unknown or just forgotten?. Quality and reliability engineering 
+international, 9(4), 383-385.
+}
+\seealso{
+\link{IW}
 }
 \author{
 Johan David Marin Benjumea, \email{johand.marin@udea.edu.co}

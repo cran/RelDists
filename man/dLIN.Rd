@@ -25,7 +25,8 @@ hLIN(x, mu, log = FALSE)
 
 \item{log, log.p}{logical; if TRUE, probabilities p are given as log(p).}
 
-\item{lower.tail}{logical; if TRUE (default), probabilities are P[X <= x], otherwise, P[X > x].}
+\item{lower.tail}{logical; if TRUE (default), probabilities are 
+P[X <= x], otherwise, P[X > x].}
 
 \item{p}{vector of probabilities.}
 
@@ -46,7 +47,7 @@ Lindley Distribution with parameter \code{mu} has density given by
 
 \eqn{f(x) = \frac{\mu^2}{\mu+1} (1+x) \exp(-\mu x),}
 
-for x > 0 and \eqn{\mu > 0}. These function were taken form LindleyR package.
+for \eqn{x > 0} and \eqn{\mu > 0}. These function were taken form LindleyR package.
 }
 \examples{
 old_par <- par(mfrow = c(1, 1)) # save previous graphical parameters
@@ -76,9 +77,12 @@ curve(hLIN(x, mu=2), from=0.001, to=10, col="red", ylab="Hazard function", las=1
 par(old_par) # restore previous graphical parameters
 }
 \references{
-\insertRef{lindley1958fiducial}{RelDists}
-
-\insertRef{lindley1965introduction}{RelDists}
+Lindley, D. V. (1958). Fiducial distributions and Bayes' theorem. 
+Journal of the Royal Statistical Society. 
+Series B (Methodological), 102-107.
+}
+\seealso{
+\link{LIN}
 }
 \author{
 Freddy Hernandez, \email{fhernanb@unal.edu.co}

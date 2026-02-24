@@ -1,6 +1,6 @@
 #' The Inverse Weibull distribution
 #'
-#' @author Johan David Marin Benjumea, \email{johand.marin@@udea.edu.co}
+#' @author Johan David Marin Benjumea, \email{johand.marin@udea.edu.co}
 #' 
 #' @description 
 #' Density, distribution function, quantile function, 
@@ -13,7 +13,10 @@
 #' @param mu scale parameter.
 #' @param sigma shape parameters.
 #' @param log,log.p	logical; if TRUE, probabilities p are given as log(p).	
-#' @param lower.tail logical; if TRUE (default), probabilities are P[X <= x], otherwise, P[X > x].
+#' @param lower.tail logical; if TRUE (default), probabilities are 
+#' P[X <= x], otherwise, P[X > x].
+#' 
+#' @seealso \link{IW}
 #' 
 #' @details 
 #' The inverse weibull distribution with parameters \code{mu} and
@@ -30,10 +33,14 @@
 #'
 #' @example examples/examples_dIW.R  
 #'
-#'@references
-#'\insertRef{almalki2014modifications}{RelDists}
+#' @references
+#' Almalki, S. J., & Nadarajah, S. (2014). Modifications of the 
+#' Weibull distribution: A review. Reliability Engineering & 
+#' System Safety, 124, 32-55.
 #'
-#'\insertRef{drapella1993complementary}{RelDists}
+#' Drapella, A. (1993). The complementary Weibull distribution: 
+#' unknown or just forgotten?. Quality and reliability engineering 
+#' international, 9(4), 383-385.
 #'
 #' @export
 dIW <- function(x, mu, sigma, log=FALSE){

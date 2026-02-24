@@ -6,7 +6,7 @@
 \alias{qEMWEx}
 \alias{rEMWEx}
 \alias{hEMWEx}
-\title{The Exponentiated Modifien Weibull Extension distribution}
+\title{The Exponentiated Modified Weibull Extension distribution}
 \usage{
 dEMWEx(x, mu, sigma, nu, tau, log = FALSE)
 
@@ -31,7 +31,8 @@ hEMWEx(x, mu, sigma, nu, tau)
 
 \item{log, log.p}{logical; if TRUE, probabilities p are given as log(p).}
 
-\item{lower.tail}{logical; if TRUE (default), probabilities are P[X <= x], otherwise, P[X > x].}
+\item{lower.tail}{logical; if TRUE (default), probabilities are 
+P[X <= x], otherwise, P[X > x].}
 
 \item{p}{vector of probabilities.}
 
@@ -48,7 +49,7 @@ random generation and hazard function for the Exponentiated Modifien Weibull Ext
 with parameters \code{mu}, \code{sigma}, \code{nu} and \code{tau}.
 }
 \details{
-The Exponentiated Modifien Weibull Extension Distribution with parameters \code{mu}, 
+The Exponentiated Modified Weibull Extension Distribution with parameters \code{mu}, 
 \code{sigma}, \code{nu} and \code{tau} has density given by
 
 \eqn{f(x)= \nu \sigma \tau (\frac{x}{\mu})^{\sigma-1} \exp((\frac{x}{\mu})^\sigma +
@@ -92,9 +93,16 @@ curve(hEMWEx(x, mu = 49.046, sigma =3.148, nu=0.00005, tau=0.1), from = 0, to = 
 par(old_par) # restore previous graphical parameters
 }
 \references{
-\insertRef{almalki2014modifications}{RelDists}
+Almalki, S. J., & Nadarajah, S. (2014). Modifications of the 
+Weibull distribution: A review. Reliability Engineering & 
+System Safety, 124, 32-55.
 
-\insertRef{sarhan2013exponentiated}{RelDists}
+Sarhan, A. M., & Apaloo, J. (2013). Exponentiated modified 
+Weibull extension distribution. Reliability Engineering & 
+System Safety, 112, 137-144.
+}
+\seealso{
+\link{EMWEx}
 }
 \author{
 Johan David Marin Benjumea, \email{johand.marin@udea.edu.co}

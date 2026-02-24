@@ -15,7 +15,7 @@
 #' The Modified Weibull distribution with parameters \code{mu}, 
 #' \code{sigma} and \code{nu} has density given by
 #' 
-#' \eqn{f(x) = \mu (\sigma + \nu x) x^(\sigma - 1) \exp(\nu x) \exp(-\mu x^(\sigma) \exp(\nu x)),}
+#' \eqn{f(x) = \mu (\sigma + \nu x) x^{\sigma - 1} \exp(\nu x) \exp(-\mu x^{\sigma} \exp(\nu x)),}
 #' 
 #' for \eqn{x > 0}, \eqn{\mu > 0}, \eqn{\sigma \geq 0} and \eqn{\nu \geq 0}. 
 #' 
@@ -24,9 +24,13 @@
 #' @example examples/examples_MW.R 
 #' 
 #' @references
-#'\insertRef{almalki2014modifications}{RelDists}
+#' Almalki, S. J., & Nadarajah, S. (2014). Modifications of the 
+#' Weibull distribution: A review. Reliability Engineering & 
+#' System Safety, 124, 32-55.
 #'
-#'\insertRef{lai2003modified}{RelDists}
+#' Lai, C. D., Xie, M., & Murthy, D. N. P. (2003). 
+#' A modified Weibull distribution. 
+#' IEEE Transactions on reliability, 52(1), 33-37.
 #' 
 #' @importFrom gamlss.dist checklink
 #' @importFrom gamlss rqres.plot

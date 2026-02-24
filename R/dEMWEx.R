@@ -1,4 +1,4 @@
-#' The Exponentiated Modifien Weibull Extension distribution
+#' The Exponentiated Modified Weibull Extension distribution
 #' 
 #' @author Johan David Marin Benjumea, \email{johand.marin@@udea.edu.co}
 #' 
@@ -15,10 +15,13 @@
 #' @param nu parameter.
 #' @param tau parameter.
 #' @param log,log.p	logical; if TRUE, probabilities p are given as log(p).	
-#' @param lower.tail logical; if TRUE (default), probabilities are P[X <= x], otherwise, P[X > x].
+#' @param lower.tail logical; if TRUE (default), probabilities are 
+#' P[X <= x], otherwise, P[X > x].
+#' 
+#' @seealso \link{EMWEx}
 #' 
 #' @details 
-#' The Exponentiated Modifien Weibull Extension Distribution with parameters \code{mu}, 
+#' The Exponentiated Modified Weibull Extension Distribution with parameters \code{mu}, 
 #' \code{sigma}, \code{nu} and \code{tau} has density given by
 #' 
 #' \eqn{f(x)= \nu \sigma \tau (\frac{x}{\mu})^{\sigma-1} \exp((\frac{x}{\mu})^\sigma +
@@ -34,11 +37,14 @@
 #'
 #' @example examples/examples_dEMWEx.R
 #' 
-#' 
 #' @references
-#'\insertRef{almalki2014modifications}{RelDists}
+#' Almalki, S. J., & Nadarajah, S. (2014). Modifications of the 
+#' Weibull distribution: A review. Reliability Engineering & 
+#' System Safety, 124, 32-55.
 #'
-#'\insertRef{sarhan2013exponentiated}{RelDists}
+#' Sarhan, A. M., & Apaloo, J. (2013). Exponentiated modified 
+#' Weibull extension distribution. Reliability Engineering & 
+#' System Safety, 112, 137-144.
 #' 
 #' @export
 dEMWEx <- function(x, mu, sigma, nu, tau, log=FALSE){

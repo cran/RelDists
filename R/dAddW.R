@@ -15,7 +15,10 @@
 #' @param nu shape parameter.
 #' @param tau shape parameter.
 #' @param log,log.p	logical; if TRUE, probabilities p are given as log(p).	
-#' @param lower.tail logical; if TRUE (default), probabilities are P[X <= x], otherwise, P[X > x].
+#' @param lower.tail logical; if TRUE (default), probabilities are 
+#' P[X <= x], otherwise, P[X > x].
+#' 
+#' @seealso \link{AddW}
 #' 
 #' @details 
 #' Additive Weibull Distribution with parameters \code{mu}, 
@@ -23,7 +26,7 @@
 #' 
 #' \eqn{f(x) = (\mu\nu x^{\nu - 1} + \sigma\tau x^{\tau - 1}) \exp({-\mu x^{\nu} - \sigma x^{\tau} }),}
 #' 
-#' for x > 0. 
+#' for \eqn{x > 0}. 
 #' 
 #' @return 
 #' \code{dAddW} gives the density, \code{pAddW} gives the distribution 
@@ -33,11 +36,15 @@
 #' @example examples/examples_dAddW.R  
 #'
 #' @references
-#' \insertRef{almalki2014modifications}{RelDists}
+#' Almalki, S. J., & Nadarajah, S. (2014). Modifications of the 
+#' Weibull distribution: A review. Reliability Engineering & 
+#' System Safety, 124, 32-55.
 #' 
-#' \insertRef{Xie1996}{RelDists}
+#' Xie, M., & Lai, C. D. (1996). Reliability analysis using an 
+#' additive Weibull model with bathtub-shaped failure rate 
+#' function. Reliability Engineering & System Safety, 
+#' 52(1), 87-93.
 #'
-#' @importFrom Rdpack reprompt
 #'
 #' @export
 dAddW <- function(x, mu, sigma,

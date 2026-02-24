@@ -1,6 +1,6 @@
 #' The Generalized Gompertz  distribution
 #' 
-#' @author Johan David Marin Benjumea, \email{johand.marin@@udea.edu.co}
+#' @author Johan David Marin Benjumea, \email{johand.marin@udea.edu.co}
 #' 
 #' @description 
 #' Density, distribution function, quantile function, 
@@ -13,7 +13,10 @@
 #' @param mu,nu scale parameter.
 #' @param sigma shape parameters.
 #' @param log,log.p	logical; if TRUE, probabilities p are given as log(p).	
-#' @param lower.tail logical; if TRUE (default), probabilities are P[X <= x], otherwise, P[X > x].
+#' @param lower.tail logical; if TRUE (default), probabilities are 
+#' P[X <= x], otherwise, P[X > x].
+#' 
+#' @seealso \link{GGD}
 #' 
 #' @details 
 #' The Generalized Gompertz  Distribution with parameters \code{mu}, 
@@ -31,7 +34,9 @@
 #' @example examples/examples_dGGD.R
 #' 
 #' @references
-#'\insertRef{el2013generalized}{RelDists}
+#' El-Gohary, A., Alshamrani, A., & Al-Otaibi, A. N. (2013). 
+#' The generalized Gompertz distribution. Applied mathematical 
+#' modelling, 37(1-2), 13-24.
 #'
 #' @export
 dGGD <- function(x, mu, sigma, nu, log=FALSE){

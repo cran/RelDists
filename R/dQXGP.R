@@ -6,7 +6,6 @@
 #' Density, distribution function,quantile function, 
 #' random generation and hazard function for the Quasi XGamma Poisson distribution 
 #' with parameters \code{mu}, \code{sigma} and \code{nu}.
-
 #' 
 #' @param x,q	vector of quantiles.
 #' @param p vector of probabilities.
@@ -15,7 +14,10 @@
 #' @param sigma parameter.
 #' @param nu parameter.
 #' @param log,log.p	logical; if TRUE, probabilities p are given as log(p).	
-#' @param lower.tail logical; if TRUE (default), probabilities are P[X <= x], otherwise, P[X > x].
+#' @param lower.tail logical; if TRUE (default), probabilities are 
+#' P[X <= x], otherwise, P[X > x].
+#' 
+#' @seealso \link{QXGP}
 #' 
 #' @details 
 #' The Quasi XGamma Poisson distribution with parameters \code{mu}, 
@@ -38,9 +40,10 @@
 #' @example examples/examples_dQXGP.R  
 #'
 #' @references
-#' \insertRef{subhradev2018}{RelDists}
-#'
-#' @importFrom Rdpack reprompt
+#' Sen, S., Korkmaz, M. Ç., & Yousof, H. M. (2018). 
+#' The quasi XGamma-Poisson distribution: properties and
+#' application. Istatistik Journal of The Turkish Statistical 
+#' Association, 11(3), 65-76.
 #'
 #' @export
 dQXGP <- function(x, mu, sigma, nu, log = FALSE){

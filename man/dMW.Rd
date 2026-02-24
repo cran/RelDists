@@ -87,9 +87,16 @@ curve(hMW(x, mu=2, sigma=1.5, nu=0.2), from=0, to=1.5, ylim=c(0, 5),
 par(old_par) # restore previous graphical parameters
 }
 \references{
-\insertRef{almalki2014modifications}{RelDists}
+Almalki, S. J., & Nadarajah, S. (2014). Modifications of the 
+Weibull distribution: A review. Reliability Engineering & 
+System Safety, 124, 32-55.
 
-\insertRef{lai2003modified}{RelDists}
+Lai, C. D., Xie, M., & Murthy, D. N. P. (2003). 
+A modified Weibull distribution. 
+IEEE Transactions on reliability, 52(1), 33-37.
+}
+\seealso{
+\link{MW}
 }
 \author{
 Johan David Marin Benjumea, \email{johand.marin@udea.edu.co}

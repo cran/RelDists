@@ -14,15 +14,18 @@
 #' @param sigma parameter.
 #' @param nu parameter.
 #' @param log,log.p	logical; if TRUE, probabilities p are given as log(p).	
-#' @param lower.tail logical; if TRUE (default), probabilities are P[X <= x], otherwise, P[X > x].
+#' @param lower.tail logical; if TRUE (default), probabilities are 
+#' P[X <= x], otherwise, P[X > x].
+#' 
+#' @seealso \link{WP}
 #' 
 #' @details 
 #' The Weibull Poisson distribution with parameters \code{mu}, 
 #' \code{sigma} and \code{nu} has density given by
 #' 
-#' \eqn{f(x) = \frac{\mu \sigma \nu e^{-\nu}} {1-e^{-\nu}} x^{\mu-1} exp({-\sigma x^{\mu}+\nu exp({-\sigma} x^{\mu}) }),}
+#' \eqn{f(x) = \frac{\mu \sigma \nu e^{-\nu}} {1-e^{-\nu}} x^{\mu-1} \exp({-\sigma x^{\mu}+\nu \exp({-\sigma} x^{\mu}) }),}
 #' 
-#' for x > 0. 
+#' for \eqn{x > 0}. 
 #' 
 #' @return 
 #' \code{dWP} gives the density, \code{pWP} gives the distribution 
@@ -32,11 +35,9 @@
 #' @example examples/examples_dWP.R    
 #'
 #' @references
-#' \insertRef{almalki2014modifications}{RelDists}
-#' 
-#' \insertRef{Wanbo2012}{RelDists}
-#'
-#' @importFrom Rdpack reprompt
+#' Lu, Wanbo, and Daimin Shi. "A new compounding life distribution: 
+#' the Weibull–Poisson distribution." Journal of applied 
+#' statistics 39.1 (2012): 21-38.
 #'
 #' @export
 dWP <- function(x, mu, sigma, nu, log=FALSE){

@@ -31,19 +31,19 @@ for \eqn{x > 0}, \eqn{\mu > 0}, \eqn{\sigma > 0} and \eqn{\nu > 0}.
 # Example 1
 # Generating some random values with
 # known mu, sigma, nu and tau
-y <- rKumIW(n=1000, mu = 1.5, sigma=  1.5, nu = 5)
+y <- rKumIW(n=100, mu = 1.5, sigma=  1.5, nu = 5)
 
 # Fitting the model
 require(gamlss)
 
-mod <- gamlss(y~1, sigma.fo=~1, nu.fo=~1, family='KumIW',
+mod <- gamlss(y~1, sigma.fo=~1, nu.fo=~1, family="KumIW",
               control=gamlss.control(n.cyc=5000, trace=FALSE))
 
 # Extracting the fitted values for mu, sigma and nu 
 # using the inverse link function
-exp(coef(mod, what='mu'))
-exp(coef(mod, what='sigma'))
-exp(coef(mod, what='nu'))
+exp(coef(mod, what="mu"))
+exp(coef(mod, what="sigma"))
+exp(coef(mod, what="nu"))
 
 # Example 2
 # Generating random values under some model
@@ -63,9 +63,13 @@ coef(mod, what="sigma")
 exp(coef(mod, what="nu"))
 }
 \references{
-\insertRef{almalki2014modifications}{RelDists}
+Almalki, S. J., & Nadarajah, S. (2014). Modifications of the 
+Weibull distribution: A review. Reliability Engineering & 
+System Safety, 124, 32-55.
 
-\insertRef{shahbaz2012kumaraswamy}{RelDists}
+Shahbaz, M. Q., Shahbaz, S., & Butt, N. S. (2012). 
+The Kumaraswamy Inverse Weibull Distribution. 
+Pakistan journal of statistics and operation research, 479-489.
 }
 \seealso{
 \link{dKumIW}

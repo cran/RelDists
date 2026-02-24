@@ -29,7 +29,8 @@ hGIW(x, mu, sigma, nu)
 
 \item{log, log.p}{logical; if TRUE, probabilities p are given as log(p).}
 
-\item{lower.tail}{logical; if TRUE (default), probabilities are P[X <= x], otherwise, P[X > x].}
+\item{lower.tail}{logical; if TRUE (default), probabilities are 
+P[X <= x], otherwise, P[X > x].}
 
 \item{p}{vector of probabilities.}
 
@@ -51,7 +52,7 @@ The Generalized Inverse Weibull distribution \code{mu},
 
 \eqn{f(x) = \nu \sigma \mu^{\sigma} x^{-(\sigma + 1)} exp \{-\nu (\frac{\mu}{x})^{\sigma}\},}
 
-for x > 0.
+for \eqn{x > 0}.
 }
 \examples{
 old_par <- par(mfrow = c(1, 1)) # save previous graphical parameters
@@ -88,9 +89,16 @@ par(old_par) # restore previous graphical parameters
 
 }
 \references{
-\insertRef{almalki2014modifications}{RelDists}
+Almalki, S. J., & Nadarajah, S. (2014). Modifications of the 
+Weibull distribution: A review. Reliability Engineering & 
+System Safety, 124, 32-55.
 
-\insertRef{gusmao2009}{RelDists}
+De Gusmao, F. R., Ortega, E. M., & Cordeiro, G. M. (2011). 
+The generalized inverse Weibull distribution. Statistical 
+Papers, 52, 591-619.
+}
+\seealso{
+\link{GIW}
 }
 \author{
 Amylkar Urrea Montoya, \email{amylkar.urrea@udea.edu.co}

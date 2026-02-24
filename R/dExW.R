@@ -14,7 +14,10 @@
 #' @param sigma parameter.
 #' @param nu parameter.
 #' @param log,log.p	logical; if TRUE, probabilities p are given as log(p).	
-#' @param lower.tail logical; if TRUE (default), probabilities are P[X <= x], otherwise, P[X > x].
+#' @param lower.tail logical; if TRUE (default), probabilities 
+#' are P[X <= x], otherwise, P[X > x].
+#' 
+#' @seealso \link{ExW}
 #' 
 #' @details 
 #' The Extended Weibull distribution with parameters \code{mu}, 
@@ -22,7 +25,7 @@
 #' 
 #' \eqn{f(x) = \frac{\mu \sigma \nu x^{\sigma -1} exp({-\mu x^{\sigma}})} {[1 -(1-\nu) exp({-\mu x^{\sigma}})]^2},}
 #' 
-#' for x > 0. 
+#' for \eqn{x > 0}. 
 #' 
 #' @return 
 #' \code{dExW} gives the density, \code{pExW} gives the distribution 
@@ -32,11 +35,13 @@
 #' @example examples/examples_dExW.R
 #'
 #' @references
-#' \insertRef{almalki2014modifications}{RelDists}
+#' Almalki, S. J., & Nadarajah, S. (2014). Modifications of the 
+#' Weibull distribution: A review. Reliability Engineering & 
+#' System Safety, 124, 32-55.
 #' 
-#' \insertRef{Zhang2007}{RelDists}
-#'
-#' @importFrom Rdpack reprompt
+#' Zhang, T., & Xie, M. (2007). Failure data analysis with 
+#' extended Weibull distribution. Communications in 
+#' Statistics—Simulation and Computation, 36(3), 579-592.
 #'
 #' @export
 dExW <- function(x, mu, sigma, nu, log=FALSE){
