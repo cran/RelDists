@@ -1,6 +1,6 @@
 Package: RelDists
 Title: Estimation for some Reliability Distributions
-Version: 1.0.1
+Version: 1.0.2
 Authors@R: c(
     person(given="Freddy", 
            family="Hernandez-Barajas",
@@ -33,13 +33,13 @@ URL: https://fhernanb.github.io/RelDists/
 BugReports: https://github.com/fhernanb/RelDists/issues
 Encoding: UTF-8
 RdMacros: Rdpack
-Imports: gamlss, gamlss.dist, Rdpack, zipfR, BBmisc, lamW, VGAM
+Imports: gamlss, Rdpack, zipfR, BBmisc, lamW, VGAM
 LazyData: true
 Suggests: knitr, rmarkdown, viridis, autoimage, gamlss.cens, V8, alr4
-RoxygenNote: 7.3.3
 VignetteBuilder: knitr
+Config/roxygen2/version: 8.1.0
 NeedsCompilation: no
-Packaged: 2026-02-21 16:07:56 UTC; fhern
+Packaged: 2026-09-06 23:53:31 UTC; freddy
 Author: Freddy Hernandez-Barajas [aut, cre] (ORCID:
     <https://orcid.org/0000-0001-7459-3329>),
   Olga Usuga [aut] (ORCID: <https://orcid.org/0000-0003-3062-1820>),
@@ -47,4 +47,4 @@ Author: Freddy Hernandez-Barajas [aut, cre] (ORCID:
   Jaime Mosquera [aut] (ORCID: <https://orcid.org/0000-0002-1684-4756>)
 Maintainer: Freddy Hernandez-Barajas <fhernanb@unal.edu.co>
 Repository: CRAN
-Date/Publication: 2026-02-24 09:30:26 UTC
+Date/Publication: 2026-09-07 02:20:02 UTC

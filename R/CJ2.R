@@ -35,7 +35,6 @@
 #' to single acceptance sampling plan and scenarios of increasing hazard 
 #' rates" Symmetry 15.10 (2023): 188.
 #' 
-#' @importFrom gamlss.dist checklink
 #' @importFrom gamlss rqres.plot
 #' @export
 CJ2 <- function (mu.link="log", sigma.link="log") {
@@ -126,30 +125,14 @@ CJ2 <- function (mu.link="log", sigma.link="log") {
   ),
   class = c("gamlss.family","family"))
 }
-#' logLik function for CJ2
-#' @description Calculates logLik for CJ2 distribution.
-#' @param logparam vector with parameters in log scale.
-#' @param x vector with the response variable.
-#' @return returns the loglikelihood given the parameters and random sample.
-#' @keywords internal
+#' @noRd
 logLik_CJ2 <- function(logparam=c(0, 0), x){
   return(sum(dCJ2(x     = x,
                   mu    = exp(logparam[1]),
                   sigma = exp(logparam[2]),
                   log=TRUE)))
 }
-#'
-#' initValuesCJ2
-#' 
-#' This function generates initial values for CJ2 distribution.
-#' 
-#' @param y vector with the random sample
-#' @keywords internal
-#' 
-#' @return 
-#' A two-length numeric vector with initial estimates for \eqn{mu} and \eqn{sigma} 
-#' parameters from CJ2 distribution (see \code{\link{dCJ2}}).
-#' 
+#' @noRd
 #' @importFrom stats optim
 estim_mu_sigma_CJ2 <- function(y) {
   mod <- optim(par=c(0, 0),

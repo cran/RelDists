@@ -1,7 +1,7 @@
 #' The Birnbaum-Saunders family - Bourguignon & Gallardo (2022)
 #' 
 #' @description 
-#' The function \code{BS3()} defines The Birnbaum-Saunders, 
+#' The function \code{BS3()} defines the Birnbaum-Saunders, 
 #' a two parameter distribution, for a \code{gamlss.family} object 
 #' to be used in GAMLSS fitting 
 #' using the function \code{gamlss()}.
@@ -34,7 +34,6 @@
 #' 
 #' @example examples/examples_BS3.R
 #' 
-#' @importFrom gamlss.dist checklink
 #' @importFrom gamlss rqres.plot
 #' @export
 BS3 <- function(mu.link = "log", sigma.link = "logit"){

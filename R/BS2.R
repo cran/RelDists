@@ -1,7 +1,7 @@
 #' The Birnbaum-Saunders family - Santos-Neto et al. (2014)
 #' 
 #' @description 
-#' The function \code{BS2()} defines The Birnbaum-Saunders, 
+#' The function \code{BS2()} defines the Birnbaum-Saunders, 
 #' a two parameter distribution, for a \code{gamlss.family} object 
 #' to be used in GAMLSS fitting 
 #' using the function \code{gamlss()}.
@@ -35,7 +35,6 @@
 #' 
 #' @example examples/examples_BS2.R
 #' 
-#' @importFrom gamlss.dist checklink
 #' @importFrom gamlss rqres.plot
 #' @export
 BS2 <- function(mu.link = "log", sigma.link = "log"){
